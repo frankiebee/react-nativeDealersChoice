@@ -1,8 +1,6 @@
-'use strict';
-
 
 var React = require('react-native');
-
+var SearchBar = require('react-native-search-bar');
 var { //things needed from react to make this work
   ActivityIndicatorIos,
   View,
@@ -14,9 +12,7 @@ var { //things needed from react to make this work
 //the style sheet
 var styles = StyleSheet.create({
   mainContainer: {
-    marginTop: 70,
-    flexDirection: 'row',
-    // alignItems: 'flex-start',
+    marginTop: 20,
     flex: 1,
     backgroundColor: '#fff'
   },
@@ -28,10 +24,10 @@ var styles = StyleSheet.create({
   },
   searchInput: {
     textAlignVertical: 'center',
-    width: 250,
-    right: 180,
     height: 40,
     padding: 4,
+    marginLeft: 5,
+    marginRight: 5,
     fontSize: 23,
     borderWidth: 1,
     borderColor: 'black',
@@ -45,9 +41,10 @@ var styles = StyleSheet.create({
   },
   button: {
     height: 40,
-    width: 100,
     backgroundColor: 'white',
     borderColor: 'black',
+    marginLeft: 5,
+    marginRight: 5,
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
