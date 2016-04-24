@@ -1,10 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 var React = require('react-native');
 var Main = require('./App/Components/Main');
+var Registration = require('./App/Components/Registration');
 
 var {
   AppRegistry,
@@ -27,7 +23,7 @@ class DealersChoice extends React.Component{
       style={styles.container}
         initialRoute={{
           title: 'Dealers Choice',
-          component: Main
+          component: Registration
         }} />
     );
   }

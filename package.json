@@ -7,7 +7,6 @@
   },
   "dependencies": {
     "react": "^0.14.8",
-    "react-native": "^0.24.1",
-    "react-native-search-bar": "file:node_modules/react-native-search-bar"
+    "react-native": "^0.24.1"
   }
 }
