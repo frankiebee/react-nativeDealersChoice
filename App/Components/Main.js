@@ -4,7 +4,6 @@ var React = require('react-native');
 var api = require('../Utils/api');
 var Dashboard = require('./Dashboard');
 
-
 var { //things needed from react to make this work
   AlertIOS,
   ActivityIndicatorIos,
@@ -19,6 +18,7 @@ var { //things needed from react to make this work
 var styles = StyleSheet.create({
 
   mainContainer: {
+    marginTop: 20,
     flex: 1,
     padding: 30,
     marginTop: 65,
