@@ -7,7 +7,7 @@ const {
   TouchableHighlight
 } = React;
 
-class Registration extends React.Component {
+class Login extends React.Component {
   constructor(props, context) {
     super(props, context);
   }
@@ -21,22 +21,12 @@ class Registration extends React.Component {
         />
 
         <TextInput
-          placeholder="Email"
-          style={styles.input}
-        />
-
-        <TextInput
           placeholder="Password"
           style={styles.input}
         />
 
-        <TextInput
-          placeholder="Confirm Password"
-          style={styles.input}
-        />
-
         <TouchableHighlight style={styles.button}>
-          <Text style={styles.buttonText}>sign-up</Text>
+          <Text style={styles.buttonText}>Log In</Text>
         </TouchableHighlight>
       </View>
     )
@@ -44,7 +34,6 @@ class Registration extends React.Component {
 }
 
 const styles = React.StyleSheet.create({
-  // use flex to control style of children
   container: {
     flex: 1,
     justifyContent: "flex-start",
@@ -78,7 +67,7 @@ const styles = React.StyleSheet.create({
   }
 });
 
-module.exports = Registration;
+module.exports = Login;
 
 
 
