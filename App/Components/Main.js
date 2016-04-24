@@ -1,10 +1,11 @@
 'use strict';
 
-
 var React = require('react-native');
 
 var { //things needed from react to make this work
+  AlertIOS,
   ActivityIndicatorIos,
+  ListView,
   View,
   Text,
   TextInput,
@@ -15,8 +16,6 @@ var { //things needed from react to make this work
 var styles = StyleSheet.create({
   mainContainer: {
     marginTop: 70,
-    flexDirection: 'row',
-    // alignItems: 'flex-start',
     flex: 1,
     backgroundColor: '#fff'
   },
@@ -28,8 +27,6 @@ var styles = StyleSheet.create({
   },
   searchInput: {
     textAlignVertical: 'center',
-    width: 250,
-    right: 180,
     height: 40,
     padding: 4,
     fontSize: 23,
@@ -58,44 +55,100 @@ var styles = StyleSheet.create({
 class Main extends React.Component{
   constructor(props){
     super(props);
+    var dataSource =  new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,})
     this.state={
-      bar: '',
+      dataSource: dataSource.cloneWithRows(this.props.name),
+      queryBar: '',
+      barList: null,
+
       isLoading: false,
       error: false
     }
   }
+   componentDidMount() {
+    this.fetchBarList();
+  }
+  fetchBarList(){
+    fetch("http://localhost:3000/", {
+      method: "GET",
+    })
+    .then((response) => response.json())
+    .then((responseData) => {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(responseData.businesses),
+        isLoaded: true,
+      })
+    })
+    .done();
+  }
+
   handleChange(event){
     this.setState({
-      bar: event.nativeEvent.text
+      queryBar: event.nativeEvent.text
     });
   }
   handleSubmit(){
     //update ActivityIndicatorIos spinner
     this.setState({
-      isLoading: true
-    })
+      isLoaded: false
+    });
     console.log("Submit", this.state.bar);
     //fetch data from github
     //reroute and pass git hub info
-  }
-  render() {
+  };
+
+  render(){
+    if(!this.state.isLoaded){
+      return this.renderLoadingView();
+    }
     return(
       <View style={styles.mainContainer}>
+
         <Text style={styles.title}> Search for a Bar </Text>
-          <TextInput
-            style={styles.searchInput}
-            value={this.state.bar}
-            onChange={this.handleChange.bind(this)}
-          />
+
+        <TextInput
+          style={styles.searchInput}
+          value={this.state.bar}
+          onChange={this.handleChange.bind(this)}
+        />
+
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
           underlayColor='white'>
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
+
+        <ListView
+          dataSource={this.dataSource}
+          renderRow={this.renderBar.bind(this)}
+          style={styles.listView}
+        />
+
       </View>
-      )
+    );
   }
+  renderLoadingView() {
+    return (
+      <View style={styles.mainContainer}>
+        <Text>
+          Loading Bars...
+        </Text>
+      </View>
+    );
+  }
+  renderBar(bar){
+    return (
+      <TouchableHighlight>
+        <View style={styles.button}>
+          <Text>{bar.name}
+          </Text>
+        </View>
+      </TouchableHighlight>
+    );
+  }
+
 };
 //export for use
 
