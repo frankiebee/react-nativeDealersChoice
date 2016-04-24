@@ -1,7 +1,13 @@
+'use strict';
 
 var React = require('react-native');
+var api = require('../Utils/api');
+var Dashboard = require('./Dashboard');
+
 var { //things needed from react to make this work
+  AlertIOS,
   ActivityIndicatorIos,
+  ListView,
   View,
   Text,
   TextInput,
@@ -10,10 +16,14 @@ var { //things needed from react to make this work
 } = React;
 //the style sheet
 var styles = StyleSheet.create({
+
   mainContainer: {
     marginTop: 20,
     flex: 1,
-    backgroundColor: '#fff'
+    padding: 30,
+    marginTop: 65,
+    flexDirection: 'column',
+    backgroundColor: '#48BBEC'
   },
   title: {
     marginBottom: 20,
@@ -22,16 +32,14 @@ var styles = StyleSheet.create({
     color: '#fff'
   },
   searchInput: {
-    textAlignVertical: 'center',
-    height: 40,
+    height: 50,
     padding: 4,
-    marginLeft: 5,
     marginRight: 5,
     fontSize: 23,
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'white',
     borderRadius: 8,
-    color: 'black'
+    color: 'white'
   },
   buttonText: {
     fontSize: 18,
@@ -39,60 +47,132 @@ var styles = StyleSheet.create({
     alignSelf: 'center'
   },
   button: {
-    height: 40,
+    height: 45,
+    flexDirection: 'row',
     backgroundColor: 'white',
-    borderColor: 'black',
-    marginLeft: 5,
-    marginRight: 5,
+    borderColor: 'white',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
     justifyContent: 'center'
   },
 });
-//class main with stuff in it
+
 class Main extends React.Component{
+  content(){
+    this.state.bars.map(function(item){
+        return (
+          <View key={item.name} style={ styles.content }>
+            <Text>{item.name}</Text>
+          </View>
+        );}
+    )
+  }
   constructor(props){
     super(props);
-    this.state={
-      bar: '',
+    this.state = {
+      username: '',
       isLoading: false,
+      loaded: false,
+      bars: null,
       error: false
     }
   }
+  componentDidMount() {
+    this.loadBarList();
+  }
+
+  loadBarList(){
+    api.barList()
+    .then((response) => {
+      // debugger;
+      this.setState({
+        bars: response.businesses,
+        loaded: true,
+      });
+    })
+    .done();
+  }
   handleChange(event){
     this.setState({
-      bar: event.nativeEvent.text
-    });
+      username: event.nativeEvent.text
+    })
   }
   handleSubmit(){
-    //update ActivityIndicatorIos spinner
+    // update our indicatorIOS spinner
     this.setState({
       isLoading: true
-    })
-    console.log("Submit", this.state.bar);
-    //fetch data from github
-    //reroute and pass git hub info
+    });
+    api.getBio(this.state.username)
+      .then((res) => {
+        if(res.message === 'Not Found'){
+          this.setState({
+            error: 'User not found',
+            isLoading: false
+          })
+        } else {
+          this.props.navigator.push({
+            title: res.name || "Select an Option",
+            component: Dashboard,
+            passProps: {userInfo: res}
+          });
+          this.setState({
+            isLoading: false,
+            error: false,
+            username: ''
+          })
+        }
+      });
   }
-  render() {
+  renderLoadingView() {
+    return (
+      <View style={styles.mainContainer}>
+        <Text>
+          Loading...
+        </Text>
+      </View>
+    );
+  }
+  pageRender(){
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.title}> Search for a Bar </Text>
-          <TextInput
-            style={styles.searchInput}
-            value={this.state.bar}
-            onChange={this.handleChange.bind(this)}
-          />
+      <TextInput
+        placeholder={"Search for a Bar near you"}
+        style={styles.searchInput}
+        value={this.state.username}
+        onChange={this.handleChange.bind(this)} />
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
-          underlayColor='white'>
+          underlayColor="white">
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
+        <Text>Hello?</Text>
+        <Text style={styles.buttonText}>{this.loopBars()}
+        </Text>
+
       </View>
-      )
+      );
+  }
+  loopBars(){
+    var bars = []
+    for(var bar = 0; bar < this.state.bars.length; bar++ ){
+      bars.push(this.state.bars[bar].name)
+    }
+    return bars
+  }
+  render() {
+    if(!this.state.loaded){
+      return this.renderLoadingView();
+    }
+    if(this.state.bars){
+      return this.pageRender();
+    }
   }
 };
+
 //export for use
 
 module.exports = Main;

@@ -1,10 +1,7 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
 var React = require('react-native');
 var Main = require('./App/Components/Main');
+var Registration = require('./App/Components/Registration');
+var Login = require('./App/Components/login');
 
 var {
   AppRegistry,
