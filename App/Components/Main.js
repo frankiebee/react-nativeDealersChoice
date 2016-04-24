@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var api = require('../Utils/api');
+var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
 // var BarList = require('./Barlist')
 var { //things needed from react to make this work
@@ -15,50 +16,7 @@ var { //things needed from react to make this work
   StyleSheet
 } = React;
 //the style sheet
-var styles = StyleSheet.create({
 
-  mainContainer: {
-    marginTop: 20,
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    backgroundColor: '#48BBEC'
-  },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff'
-  },
-  searchInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
-});
 
 class Main extends React.Component{
   content(){
