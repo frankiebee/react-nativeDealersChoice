@@ -3,7 +3,7 @@
 var React = require('react-native');
 var api = require('../Utils/api');
 var Dashboard = require('./Dashboard');
-
+// var BarList = require('./Barlist')
 var { //things needed from react to make this work
   AlertIOS,
   ActivityIndicatorIos,
@@ -73,6 +73,9 @@ class Main extends React.Component{
   constructor(props){
     super(props);
     this.state = {
+      dataSource: new ListView.DataSource({
+        rowHasChanged: (row1, row2) => row1 !== row2,
+      }),
       username: '',
       isLoading: false,
       loaded: false,
@@ -85,11 +88,11 @@ class Main extends React.Component{
   }
 
   loadBarList(){
-    api.barList()
-    .then((response) => {
-      // debugger;
+     api.barList()
+    .then((responseData) => {
+
       this.setState({
-        bars: response.businesses,
+        dataSource: this.state.dataSource.cloneWithRows(responseData.businesses),
         loaded: true,
       });
     })
@@ -126,6 +129,9 @@ class Main extends React.Component{
         }
       });
   }
+  handleBarPress(event){
+    debugger;
+  }
   renderLoadingView() {
     return (
       <View style={styles.mainContainer}>
@@ -149,27 +155,30 @@ class Main extends React.Component{
           underlayColor="white">
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
-        <Text>Hello?</Text>
-        <Text style={styles.buttonText}>{this.loopBars()}
-        </Text>
-
+        <ListView
+       enableEmptySections={true}
+       dataSource={this.state.dataSource}
+       renderRow={this.renderBar}
+       style={styles.listView}/>
       </View>
       );
   }
-  loopBars(){
-    var bars = []
-    for(var bar = 0; bar < this.state.bars.length; bar++ ){
-      bars.push(this.state.bars[bar].name)
-    }
-    return bars
+  sayHello(){ debugger;}
+  renderBar(bar){
+    return(
+      <TouchableHighlight
+        style={styles.button}
+        underlayColor="white">
+        <Text style={styles.buttonText}>{bar.name}</Text>
+      </TouchableHighlight>
+    );
   }
   render() {
     if(!this.state.loaded){
       return this.renderLoadingView();
     }
-    if(this.state.bars){
       return this.pageRender();
-    }
+
   }
 };
 
