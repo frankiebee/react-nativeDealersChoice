@@ -1,6 +1,5 @@
 
 var React = require('react-native');
-var SearchBar = require('react-native-search-bar');
 var { //things needed from react to make this work
   ActivityIndicatorIos,
   View,
@@ -84,6 +83,7 @@ class Main extends React.Component{
             value={this.state.bar}
             onChange={this.handleChange.bind(this)}
           />
+          
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
