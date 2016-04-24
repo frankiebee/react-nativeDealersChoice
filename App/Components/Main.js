@@ -1,6 +1,5 @@
 
 var React = require('react-native');
-var SearchBar = require('react-native-search-bar');
 var { //things needed from react to make this work
   ActivityIndicatorIos,
   View,
