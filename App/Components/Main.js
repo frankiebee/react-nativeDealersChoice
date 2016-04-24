@@ -80,6 +80,7 @@ class Main extends React.Component{
       isLoading: false,
       loaded: false,
       bars: null,
+      barDetails: '',
       error: false
     }
   }
@@ -92,7 +93,7 @@ class Main extends React.Component{
     .then((responseData) => {
 
       this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(responseData.businesses),
+        dataSource: this.state.dataSource.cloneWithRows(responseData.businesses, responseData.businesses.id),
         loaded: true,
       });
     })
@@ -129,8 +130,13 @@ class Main extends React.Component{
         }
       });
   }
-  handleBarPress(event){
-    debugger;
+  _handleBarSelection(bar){
+    console.log("this shit is banans !!!!!")
+    this.props.navigator.push({
+      title: bar.name || "Bar details",
+      component: Dashboard,
+      passProps: {barDetails: bar}
+    });
   }
   renderLoadingView() {
     return (
@@ -142,6 +148,7 @@ class Main extends React.Component{
     );
   }
   pageRender(){
+
     return(
       <View style={styles.mainContainer}>
       <TextInput
@@ -158,19 +165,27 @@ class Main extends React.Component{
         <ListView
        enableEmptySections={true}
        dataSource={this.state.dataSource}
-       renderRow={this.renderBar}
+       renderRow={this.renderBar.bind(this)}
+       renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
        style={styles.listView}/>
       </View>
       );
   }
-  sayHello(){ debugger;}
-  renderBar(bar){
+  setBar(bar){
+   console.log("me")
+   debugger;
+ }
+  renderBar(bar: string, sectionID: number, rowID: number){
     return(
+    <View>
       <TouchableHighlight
         style={styles.button}
+        value={bar}
+        onPressOut={this._handleBarSelection.bind(this,bar)}
         underlayColor="white">
-        <Text style={styles.buttonText}>{bar.name}</Text>
+        <Text style={styles.buttonText} >{bar.name}</Text>
       </TouchableHighlight>
+    </View>
     );
   }
   render() {
