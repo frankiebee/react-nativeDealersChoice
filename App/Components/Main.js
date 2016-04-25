@@ -76,7 +76,7 @@ class Main extends React.Component{
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
-      username: '',
+      barParams: '',
       isLoading: false,
       loaded: false,
       bars: null,
@@ -100,7 +100,7 @@ class Main extends React.Component{
   }
   handleChange(event){
     this.setState({
-      username: event.nativeEvent.text
+      barParams: event.nativeEvent.text
     })
   }
   handleSubmit(){
@@ -108,18 +108,18 @@ class Main extends React.Component{
     this.setState({
       isLoading: true
     });
-    api.getBio(this.state.username)
+    api.searchBar(this.state.barParams)
       .then((res) => {
         if(res.message === 'Not Found'){
           this.setState({
-            error: 'User not found',
+            error: 'Bar not found',
             isLoading: false
           })
         } else {
           this.props.navigator.push({
             title: res.name || "Select an Option",
             component: Dashboard,
-            passProps: {userInfo: res}
+            passProps: {barInfo: res}
           });
           this.setState({
             isLoading: false,
@@ -147,7 +147,7 @@ class Main extends React.Component{
       <TextInput
         placeholder={"Search for a Bar near you"}
         style={styles.searchInput}
-        value={this.state.username}
+        value={this.state.barParams}
         onChange={this.handleChange.bind(this)} />
         <TouchableHighlight
           style={styles.button}
