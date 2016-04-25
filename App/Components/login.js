@@ -16,16 +16,16 @@ class Login extends React.Component {
     return(
       <View style={styles.container}>
         <TextInput
-          placeholder="Username"
-          style={styles.input}
-        />
+          placeholder="Email"
+          style={styles.input}/>
 
         <TextInput
           placeholder="Password"
-          style={styles.input}
-        />
+          style={styles.input}/>
 
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight
+          // onPress={this.handleSubmit.bind(this)}
+          style={styles.button}>
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableHighlight>
       </View>

@@ -16,24 +16,18 @@ class Registration extends React.Component {
     return(
       <View style={styles.container}>
         <TextInput
-          placeholder="Username"
-          style={styles.input}
-        />
-
-        <TextInput
           placeholder="Email"
-          style={styles.input}
-        />
+          style={styles.input}/>
 
         <TextInput
           placeholder="Password"
-          style={styles.input}
-        />
+          password={true}
+          style={styles.input}/>
 
         <TextInput
           placeholder="Confirm Password"
-          style={styles.input}
-        />
+          password={true}
+          style={styles.input}/>
 
         <TouchableHighlight style={styles.button}>
           <Text style={styles.buttonText}>sign-up</Text>
