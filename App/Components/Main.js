@@ -87,6 +87,7 @@ class Main extends React.Component{
         }
       });
   }
+
   _handleBarSelection(bar){
     console.log("this shit is banans !!!!!")
     this.props.navigator.push({
@@ -95,6 +96,7 @@ class Main extends React.Component{
       passProps: {barDetails: bar}
     });
   }
+
   renderLoadingView() {
     return (
       <View style={styles.mainContainer}>
@@ -127,10 +129,7 @@ class Main extends React.Component{
       </View>
       );
   }
-  setBar(bar){
-   console.log("me")
-   debugger;
- }
+
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
     <View>
