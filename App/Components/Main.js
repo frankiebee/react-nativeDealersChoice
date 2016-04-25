@@ -15,7 +15,6 @@ var { //things needed from react to make this work
   TouchableHighlight,
   StyleSheet
 } = React;
-//the style sheet
 
 
 class Main extends React.Component{
