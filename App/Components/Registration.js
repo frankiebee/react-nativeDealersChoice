@@ -14,10 +14,41 @@ class Registration extends React.Component {
     this.state = {
       email: "",
       password: "",
+      confirmPassword: ""
+
       isLoading: false,
       error: false
     }
   }
+
+  handleChange(event) {
+    this.setState({
+      email: event.nativeEvent.text
+    })
+  }
+
+  handlePassword(event) {
+    this.setState({
+      password: event.nativeEvent.text
+    })
+  }
+
+  handleConfirmationPassword(event) {
+    this.setState({
+      confirmPassword: event.nativeEvent.text
+    })
+  }
+
+  handleSubmit() {
+    this.setState({
+      isLoading: true
+    });
+
+    api.register(this.state.email)
+      .then((res) => {
+
+      }); // end .then((res)
+    }
 
   render() {
     return(
@@ -31,14 +62,20 @@ class Registration extends React.Component {
         <TextInput
           placeholder="Password"
           password={true}
-          style={styles.input}/>
+          style={styles.input}
+          value={this.state.password}
+          onChange={this.handlePassword.bind(this)}/>
 
         <TextInput
           placeholder="Confirm Password"
           password={true}
-          style={styles.input}/>
+          style={styles.input}
+          value={this.state.confirmPassword}
+          onChange={this.handleConfirmationPassword.bind(this)}/>
 
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight
+          onPress={this.handleSubmit.bind(this)}
+          style={styles.button}>
           <Text style={styles.buttonText}>sign-up</Text>
         </TouchableHighlight>
       </View>

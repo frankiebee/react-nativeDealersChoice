@@ -4,12 +4,6 @@ var api = {
       method: "GET",
     }).then((response) => response.json());
   },
-<<<<<<< HEAD
-    barList(){
-     return fetch("http://localhost:3000/", {
-      method: "GET",
-    }).then((response) => response.json());
-  },
   getBio(username){
     var username = username.toLowerCase().trim();
     var url = `https://api.github.com/users/${username}`;
@@ -25,29 +19,13 @@ var api = {
      return fetch("http://localhost:3000/auth/sign_in?email=" + email + "&password=" + password, {
       method: "POST",
     }).then((response) => response.json());
+  },
+  register(email, password, confirmPassword){
+     email = email.toLowerCase().trim();
+     return fetch("localhost:3000/auth?email=" + email + "&password=" + password + "&password_confirmation=" + confirmPassword + "&confirm_success_url=localhost:3000", {
+      method: "POST",
+    }).then((response) => response.json());
   }
-
-  // loginPage() {
-  //   // var username = username.toLowerCase().trim();
-  //   // console.log(
-  //   //   JSON.stringify({
-  //   //     email: "santina_grady@renner.io",
-  //   //     password: '123456'
-  //   //   })
-  //   // );
-
-  //   fetch('http://localhost:3000/auth/sign_in', {  
-  //   method: 'POST',
-  //   headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({
-  //   email: "santina_grady@renner.io",
-  //   password: '123456'
-  //     })
-  //   })
-  // }
 };
 
 module.exports = api;
