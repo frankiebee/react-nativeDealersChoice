@@ -14,6 +14,11 @@ var api = {
     var url = `https://api.github.com/users/${username}/repos`;
     return fetch(url).then((res) => res.json());
   },
+  getReviews(){
+     return fetch("http://localhost:3000/users/show/47", {
+      method: "GET",
+    }).then((response) => response.json());
+  },
   loginPage(email, password){
      email = email.toLowerCase().trim();
      return fetch("http://localhost:3000/auth/sign_in?email=" + email + "&password=" + password, {

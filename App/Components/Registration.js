@@ -44,7 +44,6 @@ class Registration extends React.Component {
       isLoading: true
     });
 
-    // api.register(this.state.email, this.state.password, this.state.confirmPassword)
     api.register(this.state.email)
       .then((res) => {
         console.log(res)
