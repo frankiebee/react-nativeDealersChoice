@@ -8,8 +8,15 @@ const {
 } = React;
 
 class Registration extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: "",
+      isLoading: false,
+      error: false
+    }
   }
 
   render() {
@@ -17,7 +24,9 @@ class Registration extends React.Component {
       <View style={styles.container}>
         <TextInput
           placeholder="Email"
-          style={styles.input}/>
+          style={styles.input}
+          value={this.state.email}
+          onChange={this.handleChange.bind(this)}/>
 
         <TextInput
           placeholder="Password"

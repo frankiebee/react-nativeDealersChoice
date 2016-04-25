@@ -48,7 +48,7 @@ var api = {
   //   //   })
   //   // );
 
-  //   fetch('http://localhost:3000/auth/sign_in?email=santina_grady@renner.io&password=123456', {  
+  //   fetch('http://localhost:3000/auth/sign_in', {  
   //   method: 'POST',
   //   headers: {
   //     'Accept': 'application/json',
