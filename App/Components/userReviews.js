@@ -24,7 +24,6 @@ class userReviews extends React.Component {
 	    .then((res) => {
 	      console.log("response is", res)
 	      this.setState({
-          // dataSource: this.state.dataSource.cloneWithRows(res.reviews),
           user: res,
           dataSource: this.state.dataSource.cloneWithRows(res.reviews, res.reviews.id),
           loaded: true,
