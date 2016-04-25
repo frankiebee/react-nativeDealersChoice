@@ -1,4 +1,5 @@
 import React from 'react-native'
+var api = require('../Utils/api');
 
 const {
   Text,
@@ -14,8 +15,7 @@ class Registration extends React.Component {
     this.state = {
       email: "",
       password: "",
-      confirmPassword: ""
-
+      confirmPassword: "",
       isLoading: false,
       error: false
     }
@@ -44,9 +44,11 @@ class Registration extends React.Component {
       isLoading: true
     });
 
+    // api.register(this.state.email, this.state.password, this.state.confirmPassword)
     api.register(this.state.email)
       .then((res) => {
-
+        console.log(res)
+        console.log(email)
       }); // end .then((res)
     }
 

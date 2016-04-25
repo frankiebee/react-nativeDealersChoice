@@ -22,7 +22,7 @@ var api = {
   },
   register(email, password, confirmPassword){
      email = email.toLowerCase().trim();
-     return fetch("localhost:3000/auth?email=" + email + "&password=" + password + "&password_confirmation=" + confirmPassword + "&confirm_success_url=localhost:3000", {
+     return fetch("http://localhost:3000/auth?email=" + email + "&password=" + password + "&password_confirmation=" + confirmPassword + "&confirm_success_url=localhost:3000", {
       method: "POST",
     }).then((response) => response.json());
   }
