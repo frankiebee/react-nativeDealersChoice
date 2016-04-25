@@ -1,124 +1,126 @@
-import React from 'react-native'
+// import React from 'react-native'
 
-const {
-  Text,
-  TextInput,
-  View,
-  TouchableHighlight
-} = React;
+// CAUSES ERRORS, SO IS COMMENTED OUT
 
-class Registration extends React.Component {
-  constructor(props) {
-    super(props);
+// const {
+//   Text,
+//   TextInput,
+//   View,
+//   TouchableHighlight
+// } = React;
 
-    this.state = {
-      email: "",
-      password: "",
-      confirmPassword: ""
+// class Registration extends React.Component {
+//   constructor(props) {
+//     super(props);
 
-      isLoading: false,
-      error: false
-    }
-  }
+//     this.state = {
+//       email: "",
+//       password: "",
+//       confirmPassword: ""
 
-  handleChange(event) {
-    this.setState({
-      email: event.nativeEvent.text
-    })
-  }
+//       isLoading: false,
+//       error: false
+//     }
+//   }
 
-  handlePassword(event) {
-    this.setState({
-      password: event.nativeEvent.text
-    })
-  }
+//   handleChange(event) {
+//     this.setState({
+//       email: event.nativeEvent.text
+//     })
+//   }
 
-  handleConfirmationPassword(event) {
-    this.setState({
-      confirmPassword: event.nativeEvent.text
-    })
-  }
+//   handlePassword(event) {
+//     this.setState({
+//       password: event.nativeEvent.text
+//     })
+//   }
 
-  handleSubmit() {
-    this.setState({
-      isLoading: true
-    });
+//   handleConfirmationPassword(event) {
+//     this.setState({
+//       confirmPassword: event.nativeEvent.text
+//     })
+//   }
 
-    api.register(this.state.email)
-      .then((res) => {
+//   handleSubmit() {
+//     this.setState({
+//       isLoading: true
+//     });
 
-      }); // end .then((res)
-    }
+//     api.register(this.state.email)
+//       .then((res) => {
 
-  render() {
-    return(
-      <View style={styles.container}>
-        <TextInput
-          placeholder="Email"
-          style={styles.input}
-          value={this.state.email}
-          onChange={this.handleChange.bind(this)}/>
+//       }); // end .then((res)
+//     }
 
-        <TextInput
-          placeholder="Password"
-          password={true}
-          style={styles.input}
-          value={this.state.password}
-          onChange={this.handlePassword.bind(this)}/>
+//   render() {
+//     return(
+//       <View style={styles.container}>
+//         <TextInput
+//           placeholder="Email"
+//           style={styles.input}
+//           value={this.state.email}
+//           onChange={this.handleChange.bind(this)}/>
 
-        <TextInput
-          placeholder="Confirm Password"
-          password={true}
-          style={styles.input}
-          value={this.state.confirmPassword}
-          onChange={this.handleConfirmationPassword.bind(this)}/>
+//         <TextInput
+//           placeholder="Password"
+//           password={true}
+//           style={styles.input}
+//           value={this.state.password}
+//           onChange={this.handlePassword.bind(this)}/>
 
-        <TouchableHighlight
-          onPress={this.handleSubmit.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>sign-up</Text>
-        </TouchableHighlight>
-      </View>
-    )
-  }
-}
+//         <TextInput
+//           placeholder="Confirm Password"
+//           password={true}
+//           style={styles.input}
+//           value={this.state.confirmPassword}
+//           onChange={this.handleConfirmationPassword.bind(this)}/>
 
-const styles = React.StyleSheet.create({
-  // use flex to control style of children
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    paddingTop: 150,
-    backgroundColor: "#f7f7f7"
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: "#d7d7d7",
-    height: 50,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 10,
-    padding: 15,
-    borderRadius: 3
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: "600",
-    color: "#fafafa"
-  },
-  button: {
-    height: 45,
-    alignSelf: "stretch",
-    backgroundColor: "#000",
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 10,
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+//         <TouchableHighlight
+//           onPress={this.handleSubmit.bind(this)}
+//           style={styles.button}>
+//           <Text style={styles.buttonText}>sign-up</Text>
+//         </TouchableHighlight>
+//       </View>
+//     )
+//   }
+// }
 
-module.exports = Registration;
+// const styles = React.StyleSheet.create({
+//   // use flex to control style of children
+//   container: {
+//     flex: 1,
+//     justifyContent: "flex-start",
+//     paddingTop: 150,
+//     backgroundColor: "#f7f7f7"
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: "#d7d7d7",
+//     height: 50,
+//     marginLeft: 10,
+//     marginRight: 10,
+//     marginTop: 10,
+//     padding: 15,
+//     borderRadius: 3
+//   },
+//   buttonText: {
+//     fontSize: 18,
+//     fontWeight: "600",
+//     color: "#fafafa"
+//   },
+//   button: {
+//     height: 45,
+//     alignSelf: "stretch",
+//     backgroundColor: "#000",
+//     marginLeft: 10,
+//     marginRight: 10,
+//     marginTop: 10,
+//     alignItems: "center",
+//     justifyContent: "center"
+//   }
+// });
+
+// module.exports = Registration;
 
 
 
