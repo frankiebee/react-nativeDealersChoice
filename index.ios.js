@@ -3,6 +3,9 @@ var Main = require('./App/Components/Main');
 var Registration = require('./App/Components/Registration');
 var Login = require('./App/Components/login');
 var Tree = require('./App/Components/Tree');
+var Swiper = require('react-native-swiper')
+// es6
+// import Swiper from 'react-native-swiper'
 
 var {
   AppRegistry,
@@ -18,6 +21,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#111111'
   },
 });
+
 class DealersChoice extends React.Component{
   render() {
     return (
