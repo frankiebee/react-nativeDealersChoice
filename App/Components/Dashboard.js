@@ -2,14 +2,12 @@
 var React = require('react-native');
 var styles = require('../Styles/stylessheet');
 var DrinkMenu = require('./DrinkMenu');
-
+var Tree = require('./Tree');
 var {
-  AlertIOS,
   ActivityIndicatorIos,
   ListView,
   View,
   Text,
-  TextInput,
   TouchableHighlight,
   StyleSheet
 } = React;
@@ -26,19 +24,30 @@ class Dashboard extends React.Component{
       });
     }).done()
   }
+   _toDealer(){
+      this.props.navigator.push({
+        title: this.props.barDetails.name || "Menu details",
+        component: Tree
+      });
+  }
   render(){
     return (
       <View style={styles.mainContainer}>
-        <TouchableHighlight
-        style={styles.button}
-        onPress={this._toMenu.bind(this)}
-        >
-          <Text style={styles.buttonText} >MENU for {this.props.barDetails.name}</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={styles.button}>
-          <Text style={styles.buttonText}>Dealers Choice</Text>
-        </TouchableHighlight>
-
+        <View>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this._toMenu.bind(this)}
+          >
+            <Text style={styles.buttonText} >MENU for {this.props.barDetails.name}</Text>
+          </TouchableHighlight>
+        </View>
+        <View>
+          <TouchableHighlight
+          style={styles.button}
+          onPress={this._toDealer.bind(this)}>
+            <Text style={styles.buttonText}>Dealers Choice</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     )
   }

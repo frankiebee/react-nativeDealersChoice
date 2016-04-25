@@ -87,6 +87,7 @@ class Main extends React.Component{
         }
       });
   }
+
   _handleBarSelection(bar){
     console.log("this shit is banans !!!!!")
     this.props.navigator.push({
@@ -95,6 +96,7 @@ class Main extends React.Component{
       passProps: {barDetails: bar}
     });
   }
+
   renderLoadingView() {
     return (
       <View style={styles.mainContainer}>
@@ -120,7 +122,6 @@ class Main extends React.Component{
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
         <ListView
-       enableEmptySections={true}
        dataSource={this.state.dataSource}
        renderRow={this.renderBar.bind(this)}
        renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
@@ -128,17 +129,13 @@ class Main extends React.Component{
       </View>
       );
   }
-  setBar(bar){
-   console.log("me")
-   debugger;
- }
+
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
     <View>
       <TouchableHighlight
         style={styles.button}
-        value={bar}
-        onPressOut={this._handleBarSelection.bind(this,bar)}
+        onPress={this._handleBarSelection.bind(this,bar)}
         underlayColor="white">
         <Text style={styles.buttonText} >{bar.name}</Text>
       </TouchableHighlight>
