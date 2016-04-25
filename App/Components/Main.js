@@ -130,7 +130,6 @@ class Main extends React.Component{
       });
   }
   handleBarPress(event){
-    debugger;
   }
   renderLoadingView() {
     return (
@@ -163,7 +162,7 @@ class Main extends React.Component{
       </View>
       );
   }
-  sayHello(){ debugger;}
+  sayHello(){}
   renderBar(bar){
     return(
       <TouchableHighlight
