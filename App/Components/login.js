@@ -1,4 +1,5 @@
 import React from 'react-native'
+var api = require('../Utils/api');
 
 const {
   Text,
@@ -8,24 +9,59 @@ const {
 } = React;
 
 class Login extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: "",
+      password: "",
+      isLoading: false,
+      error: false
+    }
   }
+
+  handleChange(event) {
+    this.setState({
+      email: event.nativeEvent.text
+    })
+  }
+
+  handlePassword(event) {
+    this.setState({
+      password: event.nativeEvent.text
+    })
+  }
+
+  handleSubmit() {
+    this.setState({
+      isLoading: true
+    });
+
+    api.loginPage(this.state.email)
+      .then((res) => {
+        console.log(res);
+        console.log(email);
+      }); // end .then((res)
+    }
 
   render() {
     return(
       <View style={styles.container}>
         <TextInput
-          placeholder="Username"
+          placeholder="Email"
           style={styles.input}
-        />
+          value={this.state.email}
+          onChange={this.handleChange.bind(this)}/>
 
         <TextInput
           placeholder="Password"
           style={styles.input}
-        />
+          value={this.state.password}
+          onChange={this.handlePassword.bind(this)}/>
 
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight
+          onPress={this.handleSubmit.bind(this)}
+          style={styles.button}>
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableHighlight>
       </View>
