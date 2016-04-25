@@ -4,7 +4,6 @@ var Registration = require('./App/Components/Registration');
 var Login = require('./App/Components/login');
 var Tree = require('./App/Components/Tree');
 var DealersDrink = require('./App/Components/DealersDrink');
-
 var {
   AppRegistry,
   StyleSheet,
@@ -26,7 +25,8 @@ class DealersChoice extends React.Component{
       style={styles.container}
         initialRoute={{
           title: 'Dealers Choice',
-          component: Main
+          rightButtonTitle: 'login',
+          component: Main,
         }} />
     );
   }
