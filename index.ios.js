@@ -3,6 +3,7 @@ var Main = require('./App/Components/Main');
 var Registration = require('./App/Components/Registration');
 var Login = require('./App/Components/login');
 var Tree = require('./App/Components/Tree');
+var DealersDrink = require('./App/Components/DealersDrink');
 
 var {
   AppRegistry,

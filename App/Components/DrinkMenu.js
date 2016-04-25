@@ -1,6 +1,9 @@
+"use strict";
+
 var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
+var DrinkProfile = require('./DrinkProfile')
 
 var { //things needed from react to make this work
   AlertIOS,
@@ -14,7 +17,7 @@ var { //things needed from react to make this work
 } = React;
 
 class DrinkMenu extends React.Component{
-  componentDidMount() {
+ componentDidMount() {
     this.setState({
         dataSource: this.state.dataSource.cloneWithRows(this.props.menu.drinks, this.props.menu.drinks.id),
         loaded: true,
@@ -33,6 +36,18 @@ class DrinkMenu extends React.Component{
       barDetails: '',
       error: false
     }
+  }
+  _handleDrinkSelection(drink){
+    fetch('http://localhost:3000/bars/1/drinks/'+drink.id)
+    .then((response) => response.json())
+    .then(responseData => {
+      console.log("this shit is banans !!!!!")
+        this.props.navigator.push({
+          title: drink.name || "drink details",
+          component: DrinkProfile,
+          passProps: {curentData: responseData}
+      });
+  }).done();
   }
   renderLoadingView() {
     return (
@@ -55,16 +70,17 @@ class DrinkMenu extends React.Component{
       </View>
       );
   }
-  renderMenu(menu){
+  renderMenu(drink){
     return(
     <View>
       <TouchableHighlight
         style={styles.button}
-        value={menu}
-        underlayColor="white">
-        <Text style={styles.buttonText} >{menu.name}</Text>
+        value={drink}
+        onPress={this._handleDrinkSelection.bind(this, drink)}
+        underlayColor={"white"}>
+        <Text style={styles.buttonText} >{drink.name}</Text>
       </TouchableHighlight>
-      <Text>{menu.description}</Text>
+      <Text>{drink.description}</Text>
     </View>
       );
   }
