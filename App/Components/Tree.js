@@ -5,6 +5,7 @@ var {
 	Component,
 	StyleSheet,
 	Text,
+	TouchableHighlight,
 	View,
 } = React;
 
@@ -29,20 +30,6 @@ var styles = StyleSheet.create({
   	fontWeight: 'bold',
   	textAlign: 'center',
   	color: '#C0C0C0'
-  },
-  wrapper: {
-  },
-  slide1: {
-  	flex: 1,
-  	justifyContent: 'center',
-  	alignItems: 'center',
-  	backgroundColor: '#9DD6EB'
-  },
-  slide2: {
-  	flex: 1,
-  	justifyContent: 'center',
-  	alignItems: 'center',
-  	backgroundColor: '#97CAE5'
   },
   text: {
   	color: '#C0C0C0',
@@ -69,7 +56,6 @@ class Tree extends React.Component{
 					animating={true}
 					color={'#fff'}
 					size={'small'}
-					// add slash to line 61
 					style={{margin: 15}} />
 					<Text style={{color: '#fff'}}>Connecting...</Text>
 			</View>
@@ -80,19 +66,6 @@ class Tree extends React.Component{
 		return (
 			<Text style={styles.mainContainer}> YOU SUCK REACT </Text>
 		)
-		var {treeJSON, isLoading} = this.state;
-		if( isLoading ) {
-			return (
-				<Swiper style={styles.wrapper}> showsButtons={true}>
-					<View style={styles.slide1}>
-						<Text style={styles.text}>Hello Swiper</Text>
-					</View>
-					<View style={styles.slide2}>
-						<Text style={styles.text}>Beautiful</Text>
-					</View>
-				</Swiper>
-			)
-		}
 	}
 
 	constructor(props) {
@@ -114,7 +87,6 @@ class Tree extends React.Component{
 				);
 			})
 			.catch( error => console.log('fetch error ' + error) )
-			.done();
 	}
 
 	componentDidMount() {

@@ -3,9 +3,7 @@ var Main = require('./App/Components/Main');
 var Registration = require('./App/Components/Registration');
 var Login = require('./App/Components/login');
 var Tree = require('./App/Components/Tree');
-var Swiper = require('react-native-swiper')
-// es6
-// import Swiper from 'react-native-swiper'
+var DealersDrink = require('./App/Components/DealersDrink');
 
 var {
   AppRegistry,
@@ -29,7 +27,7 @@ class DealersChoice extends React.Component{
       style={styles.container}
         initialRoute={{
           title: 'Dealers Choice',
-          component: Tree
+          component: Main
         }} />
     );
   }

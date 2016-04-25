@@ -4,10 +4,19 @@ var api = {
       method: "GET",
     }).then((response) => response.json());
   },
-  searchBar(barParams){
-    var url = `https://api.yelp.com/v2/search?term=cocktail+bars&location=San+Francisco`;
-    return fetch(url).then((res) => res.json())
+
+  loginPage(email, password){
+     email = email.toLowerCase().trim();
+     return fetch("http://localhost:3000/auth/sign_in?email=" + email + "&password=" + password, {
+      method: "POST",
+    }).then((response) => response.json());
   },
+  register(email, password, confirmPassword){
+     email = email.toLowerCase().trim();
+     return fetch("http://localhost:3000/auth?email=" + email + "&password=" + password + "&password_confirmation=" + confirmPassword + "&confirm_success_url=localhost:3000", {
+      method: "POST",
+    }).then((response) => response.json());
+  }
 };
 
 module.exports = api;
