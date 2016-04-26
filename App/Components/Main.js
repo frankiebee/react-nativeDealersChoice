@@ -88,6 +88,7 @@ class Main extends React.Component{
         }
       });
   }
+
   _handleBarSelection(bar){
     console.log("this shit is banans !!!!!")
     this.props.navigator.push({
@@ -97,6 +98,7 @@ class Main extends React.Component{
       passProps: {barDetails: bar}
     });
   }
+
   renderLoadingView() {
     return (
      <View style={styles.loadingContainer}>
@@ -124,9 +126,8 @@ class Main extends React.Component{
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
         <ListView
-       dataSource={this.state.dataSource}
-       renderRow={this.renderBar.bind(this)}
-       renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+         dataSource={this.state.dataSource}
+         renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
       </View>
       );

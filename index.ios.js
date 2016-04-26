@@ -18,6 +18,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#111111'
   },
 });
+
 class DealersChoice extends React.Component{
   render() {
     return (
