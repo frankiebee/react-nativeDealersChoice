@@ -71,7 +71,7 @@ class Tree extends React.Component{
         <View>
           <TouchableHighlight
             style={stylesMain.button}
-            onPress={this.handleSelection.bind(this,option)}
+            onPressIn={this.handleSelection.bind(this,option)}
             underlayColor="white">
             <Text style={stylesMain.buttonText}>{option.name}</Text>
           </TouchableHighlight>
