@@ -9,6 +9,7 @@ var {
 	Text,
 	TouchableHighlight,
 	View,
+  Image,
 } = React;
 
 var styles = StyleSheet.create({
@@ -34,11 +35,27 @@ var styles = StyleSheet.create({
   	color: '#C0C0C0'
   },
   text: {
-  	color: '#C0C0C0',
+  	color: 'red',
   	fontSize: 30,
+  	backgroundColor: 'rgba(0,0,0,0)',
+  	textAlign: 'center',
   	fontWeight: 'bold',
-  }
+  },
+  backdropView: {
+    height: 120,
+    width: 320,
+    backgroundColor: 'rgba(0,0,0,0)',
+  },
+  backgroundImage: {
+  	marginTop: 20,
+    flex: 1,
+    padding: 30,
+    marginTop: 65,
+    flexDirection: 'column',
+  	resizeMode: 'cover',
+  },
 });
+
 
 // const NUM_BRANCHES = 5;
 class Tree extends React.Component{
@@ -67,7 +84,7 @@ class Tree extends React.Component{
 
 	renderOptions(option) {
 		return (
-			<View>	
+			<View>
 				<View>
 					<TouchableHighlight
 						style={stylesMain.button}
@@ -98,12 +115,14 @@ class Tree extends React.Component{
 
 	renderResults() {
 		return (
-			<View style={stylesMain.mainContainer}> 
-				<ListView 
+        <Image style={styles.backgroundImage} source={{uri: 'http://f.tqn.com/y/cocktails/1/S/t/T/-/-/163081094.jpg'}}>
+
+				<ListView
+					style={styles.backdropView}
 					dataSource={this.state.dataSource}
 					renderRow={this.renderOptions.bind(this)}>
-				</ListView> 
-			</View>
+				</ListView>
+			</Image>
 		)
 	}
 
@@ -112,7 +131,7 @@ class Tree extends React.Component{
 		fetch(url)
 			.then( response => response.json() )
 			.then( jsonData => {
-				
+
 				console.log("this is the data im getting right now",jsonData)
 				var isthend = false
 				if(jsonData.current_drink !== undefined){isthend = true}
@@ -133,14 +152,14 @@ class Tree extends React.Component{
 
 			})
 			.catch( error => console.log('fetch error ' + error) ).done();
-		
+
 	}
 
 	handleSelection(option) {
 		this.fetchTreeJSON(option.id);
 
 		if(this.state.isTheEnd){
-		
+
 				debugger;
 				this.props.navigator.push({
 
@@ -148,7 +167,7 @@ class Tree extends React.Component{
 					component: DealersDrink,
 					passProps: {dealersChoice: this.props.option}
 				});
-			
+
 		}
 
 		else{
@@ -165,12 +184,12 @@ class Tree extends React.Component{
 	}
 
 	componentDidMount() {
-		
+
 		if(this.props.option){
-			
+
 			this.fetchTreeJSON(this.props.option.id);
-		}	
-		
+		}
+
 		else {
 			this.fetchTreeJSON(0);
 		}
