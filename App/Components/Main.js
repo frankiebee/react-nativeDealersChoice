@@ -4,10 +4,10 @@ var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
-// var BarList = require('./Barlist')
+var Login = require('./login')
+
 var { //things needed from react to make this work
-  AlertIOS,
-  ActivityIndicatorIos,
+  ActivityIndicatorIOS,
   ListView,
   View,
   Text,
@@ -18,15 +18,17 @@ var { //things needed from react to make this work
 
 
 class Main extends React.Component{
+
   content(){
     this.state.bars.map(function(item){
-        return (
-          <View key={item.name} style={ styles.content }>
-            <Text>{item.name}</Text>
-          </View>
-        );}
+      return (
+        <View key={item.name} style={ styles.content }>
+          <Text>{item.name}</Text>
+        </View>
+      );}
     )
   }
+
   constructor(props){
     super(props);
     this.state = {
@@ -41,6 +43,7 @@ class Main extends React.Component{
       error: false
     }
   }
+
   componentDidMount() {
     this.loadBarList();
   }
@@ -48,7 +51,6 @@ class Main extends React.Component{
   loadBarList(){
      api.barList()
     .then((responseData) => {
-
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.businesses, responseData.businesses.id),
         loaded: true,
@@ -56,11 +58,13 @@ class Main extends React.Component{
     })
     .done();
   }
+
   handleChange(event){
     this.setState({
       barParams: event.nativeEvent.text
     })
   }
+
   handleSubmit(){
     // update our indicatorIOS spinner
     this.setState({
@@ -89,8 +93,9 @@ class Main extends React.Component{
   }
 
   _handleBarSelection(bar){
-    console.log("this shit is banans !!!!!")
+    console.log("You are in Bar details")
     this.props.navigator.push({
+      rightButtonTitle: 'log-in',
       title: bar.name || "Bar details",
       component: Dashboard,
       passProps: {barDetails: bar}
@@ -99,15 +104,17 @@ class Main extends React.Component{
 
   renderLoadingView() {
     return (
-      <View style={styles.mainContainer}>
-        <Text>
-          Loading...
-        </Text>
+     <View style={styles.loadingContainer}>
+        <ActivityIndicatorIOS
+          animating={true}
+          color={'#fff'}
+          size={'small'}
+          style={{margin: 15}} />
       </View>
     );
   }
-  pageRender(){
 
+  pageRender(){
     return(
       <View style={styles.mainContainer}>
       <TextInput
@@ -122,9 +129,8 @@ class Main extends React.Component{
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
         <ListView
-       dataSource={this.state.dataSource}
-       renderRow={this.renderBar.bind(this)}
-       renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+         dataSource={this.state.dataSource}
+         renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
       </View>
       );
@@ -142,15 +148,15 @@ class Main extends React.Component{
     </View>
     );
   }
+
   render() {
     if(!this.state.loaded){
       return this.renderLoadingView();
     }
       return this.pageRender();
-
   }
+
 };
 
 //export for use
-
 module.exports = Main;

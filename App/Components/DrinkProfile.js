@@ -14,9 +14,7 @@ var { //things needed from react to make this work
 } = React;
 
 class DrinkProfile extends React.Component{
-   componentDidMount() {
-    debugger;
-  }
+
   render(){
     return(
       <View style={styles.mainContainer}>
