@@ -5,9 +5,8 @@ var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
 var Login = require('./login')
-// var BarList = require('./Barlist')
+
 var { //things needed from react to make this work
-  AlertIOS,
   ActivityIndicatorIOS,
   ListView,
   View,
@@ -20,6 +19,7 @@ var { //things needed from react to make this work
 
 
 class Main extends React.Component{
+
   content(){
     this.state.bars.map(function(item){
         return (
@@ -29,6 +29,7 @@ class Main extends React.Component{
         );}
     )
   }
+
   constructor(props){
     super(props);
     this.state = {
@@ -58,11 +59,13 @@ class Main extends React.Component{
     })
     .done();
   }
+
   handleChange(event){
     this.setState({
       barParams: event.nativeEvent.text
     })
   }
+
   handleSubmit(){
     // update our indicatorIOS spinner
     this.setState({
@@ -113,8 +116,8 @@ class Main extends React.Component{
     </Image>
     );
   }
-  pageRender(){
 
+  pageRender(){
     return(
 
       <Image
@@ -152,13 +155,14 @@ class Main extends React.Component{
     </Image>
     );
   }
+
   render() {
     if(!this.state.loaded){
       return this.renderLoadingView();
     }
       return this.pageRender();
-
   }
+
 };
 
 //export for use

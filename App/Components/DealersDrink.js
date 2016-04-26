@@ -14,7 +14,8 @@ var {
 } = React;
 
 class DealersDrink extends React.Component{
-
+  componentDidMount(){
+  }
   render(){
     return(
       <View style={styles.mainContainer}>

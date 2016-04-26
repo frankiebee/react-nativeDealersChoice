@@ -29,7 +29,8 @@ class Dashboard extends React.Component{
    _toDealer(){
       this.props.navigator.push({
         title: this.props.barDetails.name || "Menu details",
-        component: Tree
+        component: Tree,
+        passProps: {theEnd: false}
       });
   }
   render(){

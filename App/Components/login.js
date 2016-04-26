@@ -1,14 +1,20 @@
 import React from 'react-native'
 var api = require('../Utils/api');
+var Main = require('./Main');
+var Review = require('./userReviews');
 
 const {
   Text,
   TextInput,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage,
+  Navigator,
+  NavigatorIOS
 } = React;
 
 class Login extends React.Component {
+  
   constructor(props) {
     super(props);
 
@@ -37,12 +43,20 @@ class Login extends React.Component {
       isLoading: true
     });
 
-    api.loginPage(this.state.email)
+    api.loginPage(this.state.email, this.state.password)
       .then((res) => {
+        AsyncStorage.setItem("user_data", JSON.stringify({email: res.email, auth_token: res.auth_token, id: res.id })).then(() => {
+          AsyncStorage.getItem("user_data").then((value) => {
+          }).done(function() {  });
+        })
+
+        this.props.navigator.push({
+          component: Review
+        });
         console.log(res);
-        console.log(email);
+        // AsyncStorage.setItem('auth_token', res.auth_token)
       }); // end .then((res)
-    }
+  }
 
   render() {
     return(
@@ -70,6 +84,9 @@ class Login extends React.Component {
 }
 
 const styles = React.StyleSheet.create({
+  wrapper: {
+    flex: 1
+  },
   container: {
     flex: 1,
     justifyContent: "flex-start",
