@@ -2,6 +2,16 @@
 var url = `http://localhost:3000/tags?={tag.id}`;
 
 
+if(jsonData.current_drink){
+					this.props.navigator.push({
+						title: jsonData.current_drink.name,
+						component: DealersDrink,
+						passProps: {dealersChoice: jsonData}
+					});
+				}
+
+			})
+
 var swiper = React.createClass({
 	render: function() {
 		return (

@@ -112,52 +112,29 @@ class Tree extends React.Component{
 		fetch(url)
 			.then( response => response.json() )
 			.then( jsonData => {
-				
-				console.log("this is the data im getting right now",jsonData)
-				var isthend = false
-				if(jsonData.current_drink !== undefined){isthend = true}
-				console.log(jsonData);
-					this.setState({
-						isTheEnd: isthend,
-						upComing: jsonData,
-						dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
+				this.setState({
+					isTheEnd: isthend,
+					upComing: jsonData,
+					dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
 					isLoading: false
 		})
-			// if(jsonData.current_drink){
-			// 		this.props.navigator.push({
-			// 			title: jsonData.current_drink.name,
-			// 			component: DealersDrink,
-			// 			passProps: {dealersChoice: jsonData}
-			// 		});
-			// 	}
-
-			})
 			.catch( error => console.log('fetch error ' + error) ).done();
-		
 	}
 
 	handleSelection(option) {
-		this.fetchTreeJSON(option.id);
-
-		if(this.state.isTheEnd){
-		
-				debugger;
-				this.props.navigator.push({
-
-					title: this.props.option.current_drink.name,
-					component: DealersDrink,
-					passProps: {dealersChoice: this.props.option}
-				});
-			
-		}
-
-		else{
+		this.fetchTreeJSON;
+		if(this.props.option.id) 
+			this.props.navigator.push({
+				title: this.props.option,
+				component: DealersDrink,
+				passProps: {dealersChoice: this.props.option}
+			});
+		else
 			this.props.navigator.push({
 				title: option.name,
 				component: Tree,
 				passProps: {option: option}
 			});
-		}
 		this.setState({
 			isLoading: false,
 			error: false,
@@ -165,17 +142,15 @@ class Tree extends React.Component{
 	}
 
 	componentDidMount() {
-		
 		if(this.props.option){
-			
-			this.fetchTreeJSON(this.props.option.id);
 		}	
-		
 		else {
 			this.fetchTreeJSON(0);
 		}
 	}
-};
+
+//end of class
+}
 
 module.exports = Tree;
 
