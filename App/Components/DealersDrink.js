@@ -15,12 +15,13 @@ var {
 
 class DealersDrink extends React.Component{
   componentDidMount(){
+    debugger;
   }
   render(){
     return(
       <View style={styles.mainContainer}>
 
-        <View><Text>{this.props.dealersChoice.current_drink.name}</Text></View>
+        <View><Text>{this.props.dealersChoice.current_drink[0].name}</Text></View>
         <View>
           <TouchableHighlight>
             <Text>Into It</Text>
