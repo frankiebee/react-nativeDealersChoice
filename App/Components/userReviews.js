@@ -8,6 +8,7 @@ class userReviews extends React.Component {
     super(props);
     this.state = {
     	user: null,
+    	name: "",
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       }),
@@ -22,10 +23,11 @@ class userReviews extends React.Component {
   fetchData(){
   	api.getReviews()
 	    .then((res) => {
-	      console.log("response is", res)
+	      console.log("response is", res.user.name)
 	      this.setState({
           user: res,
-          dataSource: this.state.dataSource.cloneWithRows(res.reviews, res.reviews.id),
+          name: res.user.name,
+          dataSource: this.state.dataSource.cloneWithRows(res.reviews, res.reviews.id, ),
           loaded: true,
         });
 	    })
@@ -42,8 +44,9 @@ class userReviews extends React.Component {
     return(
      <View style={styles.mainContainer}>
       
-    	  <View>
-    	  	<Text>{this.state.user.name}</Text>
+    	  <View
+    	  	dataSource={this.state.dataSource}>
+    	  	<Text>{this.state.name}</Text>
     	  </View>
       
 	      <ListView
