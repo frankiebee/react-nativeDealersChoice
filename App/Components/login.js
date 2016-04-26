@@ -5,10 +5,24 @@ const {
   Text,
   TextInput,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  AsyncStorage,
 } = React;
 
 class Login extends React.Component {
+  
+  // componentDidMount: function() {
+  //   AsyncStorage.setItem("myKey", 1).then(() => {
+  //     AsyncStorage.getItem("myKey").then((value) => {
+  //       this.setState({"myKey": value});
+  //     }).done(function() { console.log(arguments) });
+  //   })
+  // },
+
+  // getInitialState: function() {
+  //   return { };
+  // },
+
   constructor(props) {
     super(props);
 
@@ -37,10 +51,15 @@ class Login extends React.Component {
       isLoading: true
     });
 
-    api.loginPage(this.state.email)
+    api.loginPage(this.state.email, this.state.password)
       .then((res) => {
+        AsyncStorage.setItem("user_data", JSON.stringify({email: res.email, auth_token: res.auth_token, id: res.id })).then(() => {
+          AsyncStorage.getItem("user_data").then((value) => {
+          }).done(function() {  });
+        })
         console.log(res);
-        console.log(email);
+        // AsyncStorage.setItem('auth_token', res.auth_token)
+        // console.log(email);
       }); // end .then((res)
     }
 
@@ -61,6 +80,7 @@ class Login extends React.Component {
 
         <TouchableHighlight
           onPress={this.handleSubmit.bind(this)}
+          // onChangeText={(text) => this.saveData(text)}
           style={styles.button}>
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableHighlight>
