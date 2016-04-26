@@ -28,7 +28,7 @@ class DealersChoice extends React.Component{
         initialRoute={{
           title: 'Dealers Choice',
           rightButtonTitle: 'login',
-          component: Login
+          component: Main
         }} />
     );
   }
