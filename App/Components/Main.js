@@ -14,6 +14,7 @@ var { //things needed from react to make this work
   Text,
   TextInput,
   TouchableHighlight,
+  Image,
   StyleSheet
 } = React;
 
@@ -101,19 +102,24 @@ class Main extends React.Component{
 
   renderLoadingView() {
     return (
-     <View style={styles.loadingContainer}>
+    <Image
+      source={{uri: "http://bit.ly/1NQeycd"}}
+      style={styles.loadingImage}>
         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
           style={{margin: 15}} />
-      </View>
+    </Image>
     );
   }
   pageRender(){
 
     return(
-      <View style={styles.mainContainer}>
+
+      <Image
+      source={{uri: "http://bit.ly/1NQeycd"}}
+      style={styles.mainContainerImg}>
       <TextInput
         placeholder={"Search for a Bar near you"}
         style={styles.searchInput}
@@ -129,20 +135,21 @@ class Main extends React.Component{
          dataSource={this.state.dataSource}
          renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
-      </View>
+      </Image>
       );
   }
 
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
-    <View>
+    <Image
+      source={{uri: "http://bit.ly/24inbWv"}}
+      style={styles.buttonImg} >
       <TouchableHighlight
-        style={styles.button}
         onPress={this._handleBarSelection.bind(this,bar)}
         underlayColor="white">
         <Text style={styles.buttonText} >{bar.name}</Text>
       </TouchableHighlight>
-    </View>
+    </Image>
     );
   }
   render() {
