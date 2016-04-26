@@ -15,7 +15,6 @@ var {
 
 class DealersDrink extends React.Component{
   componentDidMount(){
-    debugger;
   }
   render(){
     return(
