@@ -5,9 +5,8 @@ var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
 var Login = require('./login')
-// var BarList = require('./Barlist')
+
 var { //things needed from react to make this work
-  AlertIOS,
   ActivityIndicatorIOS,
   ListView,
   View,
@@ -19,6 +18,7 @@ var { //things needed from react to make this work
 
 
 class Main extends React.Component{
+
   content(){
     this.state.bars.map(function(item){
       return (
@@ -155,6 +155,7 @@ class Main extends React.Component{
     }
       return this.pageRender();
   }
+
 };
 
 //export for use
