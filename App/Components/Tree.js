@@ -2,17 +2,17 @@ var React = require('react-native');
 var DealersDrink = require('./DealersDrink')
 var stylesMain = require('../Styles/stylessheet')
 var {
-	ActivityIndicatorIOS,
-	Component,
-	ListView,
-	StyleSheet,
-	Text,
-	TouchableHighlight,
-	View,
+  ActivityIndicatorIOS,
+  Component,
+  ListView,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View
 } = React;
 
 var styles = StyleSheet.create({
-	mainContainer: {
+  mainContainer: {
     marginTop: 20,
     flex: 1,
     padding: 30,
@@ -21,26 +21,25 @@ var styles = StyleSheet.create({
     backgroundColor: '#48BBEC'
   },
   loadingContainer: {
-  	flex: 1,
-  	flexDirection: 'row',
-  	justifyContent: 'center',
-  	alignItems: 'center',
-  	backgroundColor: '#000'
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000'
   },
   titleText: {
-  	fontSize: 20,
-  	fontWeight: 'bold',
-  	textAlign: 'center',
-  	color: '#C0C0C0'
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#C0C0C0'
   },
   text: {
-  	color: '#C0C0C0',
-  	fontSize: 30,
-  	fontWeight: 'bold',
+    color: '#C0C0C0',
+    fontSize: 30,
+    fontWeight: 'bold',
   }
 });
 
-// const NUM_BRANCHES = 5;
 class Tree extends React.Component{
 	render() {
 		var {isLoading} = this.state;
@@ -114,7 +113,7 @@ class Tree extends React.Component{
 			.then( jsonData => {
 				var isthend = false
 				if(jsonData.current_drink !== undefined){isthend = true}
-				console.log(jsonData);
+				console.log(jsonData.current_drink[0]);
 					this.setState({
 						isTheEnd: isthend,
 						upComing: jsonData,
@@ -155,14 +154,104 @@ class Tree extends React.Component{
 			this.fetchTreeJSON(0);
 		}
 	}
+
+  renderOptions(option) {
+    return (
+      <View>
+        <View>
+          <TouchableHighlight
+            style={stylesMain.button}
+            onPressIn={this.handleSelection.bind(this,option)}
+            underlayColor="white">
+            <Text style={stylesMain.buttonText}>{option.name}</Text>
+          </TouchableHighlight>
+        </View>
+        <View>
+          <Text>{option.description}</Text>
+        </View>
+      </View>
+    )
+  }
+
+  renderLoadingMessage(){
+    return (
+      <View style={styles.loadingContainer} >
+        <ActivityIndicatorIOS
+          animating={true}
+          color={'#fff'}
+          size={'small'}
+          style={{margin: 15}} />
+          <Text style={{color: '#fff'}}>Connecting...</Text>
+      </View>
+    );
+  }
+
+  renderResults() {
+    return (
+      <View style={stylesMain.mainContainer}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderOptions.bind(this)}>
+        </ListView>
+      </View>
+    )
+  }
+
+  fetchTreeJSON(tag) {
+    var url = `http://localhost:3000/tags?id=${tag}`;
+    fetch(url)
+      .then( response => response.json() )
+      .then( jsonData => {
+
+        console.log("this is the data im getting right now", jsonData[0])
+        var isend = false
+        if(jsonData[0] !== undefined){isend = true}
+        console.log(jsonData);
+          this.setState({
+            isTheEnd: isend,
+            upComing: jsonData,
+            dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
+          isLoading: false
+    })
+      if(isend){
+         this.props.navigator.push({
+           title: jsonData.name,
+           component: DealersDrink,
+           passProps: {dealersChoice: jsonData}
+         });
+       }
+
+      })
+      .catch( error => console.log('fetch error ' + error) ).done();
+
+  }
+
+  handleSelection(option) {
+
+    this.fetchTreeJSON(option.id);
+
+    this.props.navigator.push({
+      title: option.name,
+      component: Tree,
+      passProps: {option: option}
+    });
+
+    this.setState({
+      isLoading: false,
+      error: false,
+    })
+  }
+
+  componentDidMount() {
+    if(this.props.option){
+      this.fetchTreeJSON(this.props.option.id);
+    }
+    else {
+      this.fetchTreeJSON(0);
+    }
+  }
 };
 
 module.exports = Tree;
-
-
-
-
-
-
 
 

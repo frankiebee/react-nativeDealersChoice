@@ -4,7 +4,6 @@ var api = {
       method: "GET",
     }).then((response) => response.json());
   },
-
   getReviews(){
      return fetch("http://localhost:3000/users/show/47", {
       method: "GET",
