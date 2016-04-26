@@ -4,7 +4,11 @@ var api = {
       method: "GET",
     }).then((response) => response.json());
   },
-
+  getReviews(){
+     return fetch("http://localhost:3000/users/show/47", {
+      method: "GET",
+    }).then((response) => response.json());
+  },
   loginPage(email, password){
      email = email.toLowerCase().trim();
      return fetch("http://localhost:3000/auth/sign_in?email=" + email + "&password=" + password, {
