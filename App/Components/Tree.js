@@ -1,8 +1,10 @@
 var React = require('react-native');
-
+var DealersDrink = require('./DealersDrink')
+var stylesMain = require('../Styles/stylessheet')
 var {
 	ActivityIndicatorIOS,
 	Component,
+	ListView,
 	StyleSheet,
 	Text,
 	TouchableHighlight,
@@ -49,6 +51,38 @@ class Tree extends React.Component{
 			return this.renderResults();
 	}
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			dataSource: new ListView.DataSource({
+				rowHasChanged: (row1, row2) => row1 !== row2,
+			}),
+			isTheEnd: false,
+			treeJSON: [],
+			tagSelector: '',
+			isLoading: true
+		};
+	}
+
+
+	renderOptions(option) {
+		return (
+			<View>	
+				<View>
+					<TouchableHighlight
+						style={stylesMain.button}
+						onPress={this.handleSelection.bind(this,option)}
+						underlayColor="white">
+						<Text style={stylesMain.buttonText}>{option.name}</Text>
+					</TouchableHighlight>
+				</View>
+				<View>
+					<Text>{option.description}</Text>
+				</View>
+			</View>
+		)
+	}
+
 	renderLoadingMessage(){
 		return (
 			<View style={styles.loadingContainer} >
@@ -64,35 +98,83 @@ class Tree extends React.Component{
 
 	renderResults() {
 		return (
-			<Text style={styles.mainContainer}> YOU SUCK REACT </Text>
+			<View style={stylesMain.mainContainer}> 
+				<ListView 
+					dataSource={this.state.dataSource}
+					renderRow={this.renderOptions.bind(this)}>
+				</ListView> 
+			</View>
 		)
 	}
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			treeJSON: [],
-			isLoading: true
-		};
-	}
-
-	fetchTreeJSON() {
-		var url = `http://localhost:3000/tags?={tag.id}`;
+	fetchTreeJSON(tag) {
+		var url = `http://localhost:3000/tags?id=${tag}`;
 		fetch(url)
 			.then( response => response.json() )
 			.then( jsonData => {
+				
+				console.log("this is the data im getting right now",jsonData)
+				var isthend = false
+				if(jsonData.current_drink !== undefined){isthend = true}
 				console.log(jsonData);
-				this.setState(
-				{isLoading: false}
-				);
+					this.setState({
+						isTheEnd: isthend,
+						upComing: jsonData,
+						dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
+					isLoading: false
+		})
+			// if(jsonData.current_drink){
+			// 		this.props.navigator.push({
+			// 			title: jsonData.current_drink.name,
+			// 			component: DealersDrink,
+			// 			passProps: {dealersChoice: jsonData}
+			// 		});
+			// 	}
+
 			})
-			.catch( error => console.log('fetch error ' + error) )
+			.catch( error => console.log('fetch error ' + error) ).done();
+		
+	}
+
+	handleSelection(option) {
+		this.fetchTreeJSON(option.id);
+
+		if(this.state.isTheEnd){
+		
+				debugger;
+				this.props.navigator.push({
+
+					title: this.props.option.current_drink.name,
+					component: DealersDrink,
+					passProps: {dealersChoice: this.props.option}
+				});
+			
+		}
+
+		else{
+			this.props.navigator.push({
+				title: option.name,
+				component: Tree,
+				passProps: {option: option}
+			});
+		}
+		this.setState({
+			isLoading: false,
+			error: false,
+		})
 	}
 
 	componentDidMount() {
-		this.fetchTreeJSON();
+		
+		if(this.props.option){
+			
+			this.fetchTreeJSON(this.props.option.id);
+		}	
+		
+		else {
+			this.fetchTreeJSON(0);
+		}
 	}
-
 };
 
 module.exports = Tree;
