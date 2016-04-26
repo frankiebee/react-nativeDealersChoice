@@ -43,12 +43,13 @@ var styles = StyleSheet.create({
 // const NUM_BRANCHES = 5;
 class Tree extends React.Component{
   render() {
-    var {isLoading} = this.state;
-    if(isLoading) {
+
+    if(this.state.isLoading) {
       return this.renderLoadingMessage();
     }
-    else
-      return this.renderResults();
+    else{
+        return this.renderResults();
+      }
   }
 
   constructor(props) {
@@ -64,8 +65,81 @@ class Tree extends React.Component{
     };
   }
 
+  fetchTreeJSON(tag,that) {
+    var url = `http://localhost:3000/tags?id=${tag}`;
+    fetch(url)
+      .then( response => response.json() )
+      .then( jsonData => {
 
-  renderOptions(option) {
+        var isend = false
+
+        if(jsonData.current_drink !== undefined){isend = true; }
+
+          this.props.isEnd = isend
+              this.setState({
+            isTheEnd: isend,
+            upComing: jsonData,
+            dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
+            isLoading: false
+    })
+
+      if(isend){
+        console.log("We should be moving on now")
+            that.props.navigator.push({
+           title: jsonData.current_drink.name,
+           component: DealersDrink,
+           passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
+         })
+       }
+       else{
+      that.props.navigator.push({
+        title: responseData.name,
+        component: Tree,
+        passProps: {option: responseData, theEnd: this.state.isTheEnd}
+      });
+    }
+
+      })
+      .catch( error => console.log('fetch error ' + error) ).done();
+
+  }
+
+  handleSelection(option) {
+    console.log("this is when you choose")
+
+    this.fetchTreeJSON(option.id, this)
+    this.setState({
+      isLoading: false,
+      error: false,
+    })
+  }
+
+  componentDidMount() {
+    console.log("This is when i mount...")
+    if(this.props.isEnd){
+      this.props.navigator.push({
+       title: option.current_drink.name,
+       component: DealersDrink,
+       passProps: {dealersChoice: option, theEnd: this.state.isTheEnd}
+     });
+    }
+    if(this.props.option === undefined){
+       this.fetchTreeJSON(0,this);
+    }
+
+  }
+
+  renderResults() {
+    return (
+      <View style={stylesMain.mainContainer}>
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this.renderOptions.bind(this)}>
+        </ListView>
+      </View>
+    )
+  }
+renderOptions(option) {
     return (
       <View>
         <View>
@@ -94,71 +168,6 @@ class Tree extends React.Component{
           <Text style={{color: '#fff'}}>Connecting...</Text>
       </View>
     );
-  }
-
-  renderResults() {
-    return (
-      <View style={stylesMain.mainContainer}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this.renderOptions.bind(this)}>
-        </ListView>
-      </View>
-    )
-  }
-
-  fetchTreeJSON(tag) {
-    var url = `http://localhost:3000/tags?id=${tag}`;
-    fetch(url)
-      .then( response => response.json() )
-      .then( jsonData => {
-
-        console.log("this is the data im getting right now",jsonData)
-        var isend = false
-        if(jsonData.current_drink !== undefined){isend = true}
-        console.log(jsonData);
-          this.setState({
-            isTheEnd: isend,
-            upComing: jsonData,
-            dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
-          isLoading: false
-    })
-      if(isend){
-         this.props.navigator.push({
-           title: jsonData.current_drink.name,
-           component: DealersDrink,
-           passProps: {dealersChoice: jsonData}
-         });
-       }
-
-      })
-      .catch( error => console.log('fetch error ' + error) ).done();
-
-  }
-
-  handleSelection(option) {
-
-    this.fetchTreeJSON(option.id);
-
-    this.props.navigator.push({
-      title: option.name,
-      component: Tree,
-      passProps: {option: option}
-    });
-
-    this.setState({
-      isLoading: false,
-      error: false,
-    })
-  }
-
-  componentDidMount() {
-    if(this.props.option){
-      this.fetchTreeJSON(this.props.option.id);
-    }
-    else {
-      this.fetchTreeJSON(0);
-    }
   }
 };
 
