@@ -12,6 +12,13 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#48BBEC'
   },
+   loadingContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000'
+  },
   title: {
     marginBottom: 20,
     fontSize: 25,
