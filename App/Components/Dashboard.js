@@ -18,6 +18,7 @@ class Dashboard extends React.Component{
     .then((response) => response.json())
     .then(responseData => {
       this.props.navigator.push({
+        rightButtonTitle: 'log-in',
         title: this.props.barDetails.name || "Menu details",
         component: DrinkMenu,
         passProps: {menu: responseData}

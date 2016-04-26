@@ -4,10 +4,11 @@ var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
+var Login = require('./login')
 // var BarList = require('./Barlist')
 var { //things needed from react to make this work
   AlertIOS,
-  ActivityIndicatorIos,
+  ActivityIndicatorIOS,
   ListView,
   View,
   Text,
@@ -91,6 +92,7 @@ class Main extends React.Component{
   _handleBarSelection(bar){
     console.log("this shit is banans !!!!!")
     this.props.navigator.push({
+      rightButtonTitle: 'log-in',
       title: bar.name || "Bar details",
       component: Dashboard,
       passProps: {barDetails: bar}
@@ -99,10 +101,12 @@ class Main extends React.Component{
 
   renderLoadingView() {
     return (
-      <View style={styles.mainContainer}>
-        <Text>
-          Loading...
-        </Text>
+     <View style={styles.loadingContainer}>
+        <ActivityIndicatorIOS
+          animating={true}
+          color={'#fff'}
+          size={'small'}
+          style={{margin: 15}} />
       </View>
     );
   }
@@ -122,9 +126,8 @@ class Main extends React.Component{
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
         <ListView
-       dataSource={this.state.dataSource}
-       renderRow={this.renderBar.bind(this)}
-       renderSeparator={(sectionID, rowID) => <View key={`${sectionID}-${rowID}`} style={styles.separator} />}
+         dataSource={this.state.dataSource}
+         renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
       </View>
       );

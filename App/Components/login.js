@@ -1,5 +1,7 @@
 import React from 'react-native'
 var api = require('../Utils/api');
+var Main = require('./Main');
+var Review = require('./userReviews');
 
 const {
   Text,
@@ -7,22 +9,12 @@ const {
   View,
   TouchableHighlight,
   AsyncStorage,
+  Navigator,
+  NavigatorIOS
 } = React;
 
 class Login extends React.Component {
   
-  // componentDidMount: function() {
-  //   AsyncStorage.setItem("myKey", 1).then(() => {
-  //     AsyncStorage.getItem("myKey").then((value) => {
-  //       this.setState({"myKey": value});
-  //     }).done(function() { console.log(arguments) });
-  //   })
-  // },
-
-  // getInitialState: function() {
-  //   return { };
-  // },
-
   constructor(props) {
     super(props);
 
@@ -57,11 +49,14 @@ class Login extends React.Component {
           AsyncStorage.getItem("user_data").then((value) => {
           }).done(function() {  });
         })
+
+        this.props.navigator.push({
+          component: Review
+        });
         console.log(res);
         // AsyncStorage.setItem('auth_token', res.auth_token)
-        // console.log(email);
       }); // end .then((res)
-    }
+  }
 
   render() {
     return(
@@ -80,7 +75,6 @@ class Login extends React.Component {
 
         <TouchableHighlight
           onPress={this.handleSubmit.bind(this)}
-          // onChangeText={(text) => this.saveData(text)}
           style={styles.button}>
           <Text style={styles.buttonText}>Log In</Text>
         </TouchableHighlight>
@@ -90,6 +84,9 @@ class Login extends React.Component {
 }
 
 const styles = React.StyleSheet.create({
+  wrapper: {
+    flex: 1
+  },
   container: {
     flex: 1,
     justifyContent: "flex-start",

@@ -3,6 +3,7 @@ var Main = require('./App/Components/Main');
 var Registration = require('./App/Components/Registration');
 var Login = require('./App/Components/login');
 var Tree = require('./App/Components/Tree');
+var DealersDrink = require('./App/Components/DealersDrink');
 var userReviews = require('./App/Components/userReviews');
 
 var {
@@ -26,7 +27,8 @@ class DealersChoice extends React.Component{
       style={styles.container}
         initialRoute={{
           title: 'Dealers Choice',
-          component: Main
+          rightButtonTitle: 'login',
+          component: Login
         }} />
     );
   }

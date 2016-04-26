@@ -5,8 +5,8 @@ var api = {
     }).then((response) => response.json());
   },
   getReviews(user){
-     var id = user.id
-     return fetch("http://localhost:3000/users/show/" + id, {
+     var user = JSON.parse(user);
+     return fetch("http://localhost:3000/users/show/" + user.id, {
       method: "GET",
     }).then((response) => response.json());
   },
