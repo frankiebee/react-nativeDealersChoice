@@ -19,6 +19,7 @@ var styles = StyleSheet.create({
     backgroundColor: '#111111'
   },
 });
+
 class DealersChoice extends React.Component{
   render() {
     return (
@@ -26,7 +27,7 @@ class DealersChoice extends React.Component{
       style={styles.container}
         initialRoute={{
           title: 'Dealers Choice',
-          component: userReviews
+          component: Main
         }} />
     );
   }

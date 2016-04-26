@@ -67,7 +67,7 @@ class Tree extends React.Component{
 
 	renderOptions(option) {
 		return (
-			<View>	
+			<View>
 				<View>
 					<TouchableHighlight
 						style={stylesMain.button}
@@ -98,11 +98,11 @@ class Tree extends React.Component{
 
 	renderResults() {
 		return (
-			<View style={stylesMain.mainContainer}> 
-				<ListView 
+			<View style={stylesMain.mainContainer}>
+				<ListView
 					dataSource={this.state.dataSource}
 					renderRow={this.renderOptions.bind(this)}>
-				</ListView> 
+				</ListView>
 			</View>
 		)
 	}
@@ -112,8 +112,6 @@ class Tree extends React.Component{
 		fetch(url)
 			.then( response => response.json() )
 			.then( jsonData => {
-				
-				console.log("this is the data im getting right now",jsonData)
 				var isthend = false
 				if(jsonData.current_drink !== undefined){isthend = true}
 				console.log(jsonData);
@@ -123,35 +121,20 @@ class Tree extends React.Component{
 						dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
 					isLoading: false
 		})
-			// if(jsonData.current_drink){
-			// 		this.props.navigator.push({
-			// 			title: jsonData.current_drink.name,
-			// 			component: DealersDrink,
-			// 			passProps: {dealersChoice: jsonData}
-			// 		});
-			// 	}
-
 			})
 			.catch( error => console.log('fetch error ' + error) ).done();
-		
 	}
 
 	handleSelection(option) {
 		this.fetchTreeJSON(option.id);
-
-		if(this.state.isTheEnd){
-		
-				debugger;
-				this.props.navigator.push({
-
-					title: this.props.option.current_drink.name,
-					component: DealersDrink,
-					passProps: {dealersChoice: this.props.option}
-				});
-			
+		if(this.state.isTheEnd) {
+			this.props.navigator.push({
+				title: this.props.option.current_drink.name,
+				component: DealersDrink,
+				passProps: {dealersChoice: this.props.option}
+			});
 		}
-
-		else{
+		else {
 			this.props.navigator.push({
 				title: option.name,
 				component: Tree,
@@ -165,12 +148,9 @@ class Tree extends React.Component{
 	}
 
 	componentDidMount() {
-		
 		if(this.props.option){
-			
 			this.fetchTreeJSON(this.props.option.id);
-		}	
-		
+		}
 		else {
 			this.fetchTreeJSON(0);
 		}

@@ -15,7 +15,7 @@ var {
 
 class DealersDrink extends React.Component{
 
-  render(){
+  render() {
     return(
       <View style={styles.mainContainer}>
         <View><Text>{this.props.DealersChoice.current_drink.name} </Text></View>
@@ -32,7 +32,7 @@ class DealersDrink extends React.Component{
           </TouchableHighlight>
         </View>
       </View>
-      )
+    )
   }
 }
 

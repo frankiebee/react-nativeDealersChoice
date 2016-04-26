@@ -20,13 +20,14 @@ var { //things needed from react to make this work
 class Main extends React.Component{
   content(){
     this.state.bars.map(function(item){
-        return (
-          <View key={item.name} style={ styles.content }>
-            <Text>{item.name}</Text>
-          </View>
-        );}
+      return (
+        <View key={item.name} style={ styles.content }>
+          <Text>{item.name}</Text>
+        </View>
+      );}
     )
   }
+
   constructor(props){
     super(props);
     this.state = {
@@ -41,6 +42,7 @@ class Main extends React.Component{
       error: false
     }
   }
+
   componentDidMount() {
     this.loadBarList();
   }
@@ -48,7 +50,6 @@ class Main extends React.Component{
   loadBarList(){
      api.barList()
     .then((responseData) => {
-
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.businesses, responseData.businesses.id),
         loaded: true,
@@ -56,11 +57,13 @@ class Main extends React.Component{
     })
     .done();
   }
+
   handleChange(event){
     this.setState({
       barParams: event.nativeEvent.text
     })
   }
+
   handleSubmit(){
     // update our indicatorIOS spinner
     this.setState({
@@ -106,8 +109,8 @@ class Main extends React.Component{
       </View>
     );
   }
-  pageRender(){
 
+  pageRender(){
     return(
       <View style={styles.mainContainer}>
       <TextInput
@@ -142,15 +145,14 @@ class Main extends React.Component{
     </View>
     );
   }
+
   render() {
     if(!this.state.loaded){
       return this.renderLoadingView();
     }
       return this.pageRender();
-
   }
 };
 
 //export for use
-
 module.exports = Main;
