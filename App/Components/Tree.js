@@ -90,7 +90,6 @@ class Tree extends React.Component{
            component: DealersDrink,
            passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
          })
-            debugger;
        }
 
       })
@@ -109,7 +108,6 @@ class Tree extends React.Component{
   }
   componentWillMount(){
     console.log("Component Will mount?")
-    debugger;
   }
   componentDidMount() {
     console.log("This is when i mount...")
