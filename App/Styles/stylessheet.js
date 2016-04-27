@@ -7,13 +7,43 @@ var {
 var styles = StyleSheet.create({
 
   mainContainer: {
-    marginTop: 20,
+    backgroundColor: "white",
     flex: 1,
-    padding: 30,
     marginTop: 65,
     flexDirection: 'column',
-    backgroundColor: '#48BBEC',
-    opacity: 0.2
+    alignItems: "flex-start",
+  },
+  searchContainer:{
+  flexDirection: 'row',
+  },
+  searchInput: {
+    flex: 2,
+    height: 33,
+    width: width * 0.78,
+    padding: 4,
+    marginLeft: 5,
+    marginTop: 5,
+    marginRight: 6,
+    marginBottom: 5,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 8,
+    color: 'peru',
+    alignSelf: 'flex-end',
+  },
+  searchButton:{
+    height: 33,
+    flex: 2,
+    width: 60,
+  },
+  searchbuttonText: {
+    marginTop: 13,
+    fontSize: 14,
+    color: 'black',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    opacity: 1,
   },
   loadingContainer: {
     flex: 1,
@@ -22,42 +52,7 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#000'
   },
-    barButtonImg: {
-    flex: 1,
-    height: 100,
-    flexDirection: 'row',
-    marginBottom: 5,
-    marginTop: 5,
-    width: width,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
 
-
-  },
-  buttonImg: {
-    flex: 1,
-    height: 45,
-    flexDirection: 'row',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    width: 300,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-    opacity: 0.5,
-    overflow: 'hidden',
-    shadowColor: "#000000",
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 1
-    }
-  },
   mainContainerImg: {
     flex: 1,
     paddingRight: 30,
@@ -68,46 +63,46 @@ var styles = StyleSheet.create({
     height: height,
     width: width,
   },
-  loadingImage: {
-    flex: 1,
-    paddingRight: 30,
-    paddingLeft: 30,
-    paddingTop: 30,
-    marginTop: 65,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    resizeMode: 'cover',
-    width: null,
-    height: null,
-    height: height,
-    width: width,
-  },
   title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
     color: '#fff'
   },
-  searchInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
-  },
+
   buttonText: {
-    fontSize: 18,
+    fontSize: 15,
     color: 'black',
     alignSelf: 'center',
     justifyContent: 'center',
     opacity: 1,
   },
+  barButtonImg: {
+    borderColor: 'black',
+    borderWidth: 1,
+    flex: 1,
+    height: 100,
+    flexDirection: 'row',
+    marginBottom: 5,
+    marginTop: 5,
+    width: width,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  barTextView: {
+    alignSelf:"flex-end",
+    backgroundColor: 'gainsboro',
+    opacity: 0.5,
+    height: 45,
+  },
   barButtonText: {
-    fontSize: 18,
+    paddingLeft: 5,
+    width: width,
+    paddingTop: 10,
+    paddingBottom: 10,
+    backgroundColor: 'transparent',
+    fontSize: 24,
     fontFamily: 'Cochin',
     color: 'black',
     alignSelf: 'center',
@@ -132,13 +127,11 @@ var styles = StyleSheet.create({
     backgroundColor: 'black',
     width: width,
   },
-  clearBack: {
-    backgroundColor: 'transparent',
-  },
+
   listView:{
     width: width,
-    marginLeft: -30,
-
+    marginLeft: 0,
+    backgroundColor:"#f5f5f5",
   },
 
 });
