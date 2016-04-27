@@ -94,8 +94,6 @@ class Main extends React.Component{
   }
 
   _handleBarSelection(bar){
-    debugger;
-    console.log("this shit is banans !!!!!")
     this.props.navigator.push({
       rightButtonTitle: 'log-in',
       title: bar.name || "Bar details",
@@ -107,7 +105,7 @@ class Main extends React.Component{
   renderLoadingView() {
     return (
     <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.loadingImage}>
         <ActivityIndicatorIOS
           animating={true}
@@ -145,12 +143,12 @@ class Main extends React.Component{
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
     <Image
-      source={require('./img/woooooood.jpg')}
-      style={styles.buttonImg} >
+      source={require('./img/Barborasso.jpg')}
+      style={styles.barButtonImg} >
       <TouchableHighlight
         onPress={this._handleBarSelection.bind(this,bar)}
         underlayColor="white">
-        <Text style={styles.buttonText} >{bar.name}</Text>
+        <Text style={styles.barButtonText} >{bar.name}</Text>
       </TouchableHighlight>
     </Image>
     );

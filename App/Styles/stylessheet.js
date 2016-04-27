@@ -22,6 +22,27 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#000'
   },
+    barButtonImg: {
+    flex: 1,
+    height: 45,
+    flexDirection: 'row',
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    width: 300,
+    height: 100,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    overflow: 'hidden',
+    shadowColor: "#000000",
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 0.5,
+      width: 0.5
+    }
+  },
   buttonImg: {
     flex: 1,
     height: 45,
@@ -67,6 +88,8 @@ var styles = StyleSheet.create({
     resizeMode: 'cover',
     width: null,
     height: null,
+    height: height,
+    width: width,
   },
   title: {
     marginBottom: 20,
@@ -91,6 +114,14 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     opacity: 1,
   },
+  barButtonText: {
+    fontSize: 18,
+    fontFamily: 'Cochin',
+    color: 'black',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    opacity: 1,
+  },
   button: {
     height: 45,
     flexDirection: 'row',
@@ -109,7 +140,6 @@ var styles = StyleSheet.create({
     backgroundColor: 'black',
     width: width
   },
-
   clearBack: {
     backgroundColor: 'transparent',
   }
