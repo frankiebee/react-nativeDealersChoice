@@ -94,6 +94,7 @@ class Main extends React.Component{
   }
 
   _handleBarSelection(bar){
+    debugger;
     console.log("this shit is banans !!!!!")
     this.props.navigator.push({
       rightButtonTitle: 'log-in',
@@ -120,7 +121,7 @@ class Main extends React.Component{
   pageRender(){
     return(
       <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.mainContainerImg}>
       <TextInput
         placeholder={"Search for a Bar near you"}
@@ -130,7 +131,7 @@ class Main extends React.Component{
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
-          underlayColor="white">
+          underlayColor="black">
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
         <ListView
@@ -144,7 +145,7 @@ class Main extends React.Component{
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
     <Image
-      source={{uri: "http://bit.ly/24inbWv"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.buttonImg} >
       <TouchableHighlight
         onPress={this._handleBarSelection.bind(this,bar)}

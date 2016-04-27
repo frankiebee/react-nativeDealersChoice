@@ -41,7 +41,7 @@ class Dashboard extends React.Component{
           <TouchableHighlight
           style={styles.buttonImg}
           onPress={this._toMenu.bind(this)}
-          >
+          underlayColor="white">
             <Text style={styles.buttonText} >Menu</Text>
           </TouchableHighlight>
         </View>
