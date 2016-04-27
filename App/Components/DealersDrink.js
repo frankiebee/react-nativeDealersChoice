@@ -1,6 +1,6 @@
 var React = require('react-native');
-var DrinkProfile = require('./DrinkProfile')
-var Dashboard = require('./Dashboard')
+var DrinkProfile = require('./DrinkProfile');
+var Dashboard = require('./Dashboard');
 var styles = require('../Styles/stylessheet');
 
 var {
@@ -14,60 +14,77 @@ var {
   StyleSheet
 } = React;
 
+
 class DealersDrink extends React.Component{
-  render(){
-    return(
-      <View style={styles.mainContainer}>
-
-        <View><Text>{this.props.dealersChoice.current_drink.name}</Text></View>
-        <View>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={this.handleDrinkSelection.bind(this, current_drink)}>
-            <Text>Into It</Text>
-            // renders to DrinkProfile
-          </TouchableHighlight>
-        </View>
-
-        <View>
-          <TouchableHighlight
-            style={styles.button}
-            onPress={this.handleNextDrinkSelection.bind(this, current_drink)}>
-            <Text>No Thanks</Text>
-            // renders next drink in array
-          </TouchableHighlight>
-        </View>
-      </View>
-    )
+  constructor(props) {
+    super(props);
+    var drinkArray = this.props.dealersChoice.current_drink.length;
+    var nextDrink = drinkArray - 1;
+    console.log(nextDrink, "THIS IS DRINK ARRAY, AGAIN")
+    this.state = {
+      isLoading: true,
+      nextDrink: nextDrink
+    };
   }
 
-  handleDrinkSelection(drink) {
-    console.log("You are in the drink selection")
+  handleDrinkSelection(event) {
     this.props.navigator.push({
-      title: drink.name,
-      component: Tree,
-      passProps: {option: drink}
+      title: this.props.dealersChoice.current_drink.name,
+      component: DrinkProfile,
+      passProps: {option: this}
     });
     this.setState({
       isLoading: false,
       error: false
-    })
+    });
   }
 
-  handleNextDrinkSelection(handleNextDrinkSelection) {
-    console.log("User does not want a drink, send to main!")
-    this.props.navigator.push({
-      title: nextDrink.name,
-      component: Tree,
-      passProps: {option: nextDrink}
-    })
+  handleNextDrink(event) {
+    if(drinkArray === 0)
+      this.props.navigator.push({
+        component: Dashboard,
+      })
+    else
+      this.props.navigator.push({
+        component: DealersDrink,
+        passProps: {option: this}
+      })
     this.setState({
       isLoading: false,
-      error: false
+      error: false,
+      nextDrink: nextDrink
     })
   }
 
-// end DealersDrink class
-}
+  render(){
+    console.log(this, "THIS IS THIS IN RENDER")
+    return(
+      <View style={styles.mainContainer}>
+        <View>
+          <Text>{this.props.dealersChoice.current_drink.name}</Text>
+        </View>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleDrinkSelection.bind(this)}>
+          <Text>Into It</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleNextDrink.bind(this)}>
+          <Text>Next drink, please</Text>
+        </TouchableHighlight>
+      </View>
+    )
+  }
+} // end class DealersDrink
+
 
 module.exports = DealersDrink;
+
+
+
+
+
+

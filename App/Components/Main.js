@@ -66,7 +66,6 @@ class Main extends React.Component{
   }
 
   handleSubmit(){
-    // update our indicatorIOS spinner
     this.setState({
       isLoading: true
     });

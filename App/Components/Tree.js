@@ -1,6 +1,7 @@
 var React = require('react-native');
 var DealersDrink = require('./DealersDrink')
 var stylesMain = require('../Styles/stylessheet')
+
 var {
   ActivityIndicatorIOS,
   Component,
@@ -71,35 +72,26 @@ class Tree extends React.Component{
       .then( response => response.json() )
       .then( jsonData => {
 
-        var isend = false
+      var isend = false
 
-        if(jsonData.current_drink !== undefined){isend = true; }
+      if(jsonData.current_drink !== undefined){isend = true; }
+        this.props.isEnd = isend
+            this.setState({
+          isTheEnd: isend,
+          upComing: jsonData,
+          dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
+          isLoading: false
+        })
 
-          this.props.isEnd = isend
-              this.setState({
-            isTheEnd: isend,
-            upComing: jsonData,
-            dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
-            isLoading: false
-    })
-
-      if(isend){
+      if(isend) {
         console.log("We should be moving on now")
             that.props.navigator.push({
-           title: jsonData.current_drink.name,
+           title: jsonData.current_drink[0].name,
            component: DealersDrink,
            passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
          })
        }
-       else{
-      that.props.navigator.push({
-        title: responseData.name,
-        component: Tree,
-        passProps: {option: responseData, theEnd: this.state.isTheEnd}
-      });
-    }
-
-      })
+    })
       .catch( error => console.log('fetch error ' + error) ).done();
 
   }
@@ -115,7 +107,7 @@ class Tree extends React.Component{
   }
 
   componentDidMount() {
-    console.log("This is when i mount...")
+    console.log("componentDidMount")
     if(this.props.isEnd){
       this.props.navigator.push({
        title: option.current_drink.name,

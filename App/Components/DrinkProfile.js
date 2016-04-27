@@ -14,15 +14,25 @@ var { //things needed from react to make this work
 } = React;
 
 class DrinkProfile extends React.Component{
+  constructor(props) {
+    super(props);
+    console.log(this, "YOU ARE IN DRINK PROFILE")
+    console.log(this.props.option.props.dealersChoice.current_drink[0].name, "THIS IS THE DRINK NAME")
+    this.state = {
+      isLoading: true,
+    };
+  }
 
   render(){
     return(
       <View style={styles.mainContainer}>
-        <Text>{this.props.curentData.drink.name}</Text>
-        <Text>{this.props.curentData.drink.description}</Text>
-        <Text>{this.props.curentData.reviews[0].description}</Text>
+        <Text>{this.props.option.props.dealersChoice.current_drink[0].name}
+        </Text>
+        <Text>{this.props.option.props.dealersChoice.current_drink[0].description}
+        </Text>
       </View>
-      )
+
+    )
   }
 
 }
