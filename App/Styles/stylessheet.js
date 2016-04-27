@@ -12,7 +12,7 @@ var styles = StyleSheet.create({
     padding: 30,
     marginTop: 65,
     flexDirection: 'column',
-    backgroundColor: '#48BBEC',
+    backgroundColor: 'grey',
     opacity: 0.2
   },
   loadingContainer: {
@@ -31,9 +31,9 @@ var styles = StyleSheet.create({
     marginTop: 10,
     width: 300,
     height: 100,
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,.6)',
     overflow: 'hidden',
     shadowColor: "#000000",
     shadowOpacity: 0.5,
@@ -55,16 +55,16 @@ var styles = StyleSheet.create({
     width: 300,
     alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(0,0,0,.6)',
     opacity: 0.5,
     overflow: 'hidden',
-    shadowColor: "#000000",
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 1,
-      width: 1
-    }
+    // shadowColor: "#000000",
+    // shadowOpacity: 0.5,
+    // shadowRadius: 2,
+    // shadowOffset: {
+    //   height: 1,
+    //   width: 1
+    // }
   },
   mainContainerImg: {
     flex: 1,
@@ -115,11 +115,17 @@ var styles = StyleSheet.create({
     opacity: 1,
   },
   barButtonText: {
+    flex: 1,
     fontSize: 18,
     fontFamily: 'Cochin',
     color: 'black',
     alignSelf: 'center',
     justifyContent: 'center',
+    bottom: -75,
+    borderWidth: 2,
+    opacity: 0.2,
+    color: 'white',
+    backgroundColor: 'black',
     opacity: 1,
   },
   button: {

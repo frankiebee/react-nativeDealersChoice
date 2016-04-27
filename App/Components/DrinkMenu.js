@@ -52,7 +52,7 @@ class DrinkMenu extends React.Component{
   renderLoadingView() {
     return (
       <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.loadingImage}>
         <Text>
           Loading...
@@ -66,7 +66,7 @@ class DrinkMenu extends React.Component{
     }
       return(
       <Image
-      source={{uri: "http://bit.ly/1NQeycd" }}
+      source={require('./img/woooooood.jpg')}
       style={styles.mainContainerImage}>
         <ListView
         dataSource={this.state.dataSource}

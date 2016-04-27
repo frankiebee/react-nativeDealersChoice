@@ -4,7 +4,8 @@ var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
-var Login = require('./login')
+var Login = require('./login');
+var BACKGROUND_URL = "./img/woooooood.jpg";
 
 var { //things needed from react to make this work
   ActivityIndicatorIOS,
@@ -105,7 +106,7 @@ class Main extends React.Component{
   renderLoadingView() {
     return (
     <Image
-      source={require('./img/woooooood.jpg')}
+      source={require(BACKGROUND_URL)}
       style={styles.loadingImage}>
         <ActivityIndicatorIOS
           animating={true}
@@ -119,7 +120,7 @@ class Main extends React.Component{
   pageRender(){
     return(
       <Image
-      source={require('./img/woooooood.jpg')}
+      source={require(BACKGROUND_URL)}
       style={styles.mainContainerImg}>
       <TextInput
         placeholder={"Search for a Bar near you"}
@@ -147,7 +148,7 @@ class Main extends React.Component{
       style={styles.barButtonImg} >
       <TouchableHighlight
         onPress={this._handleBarSelection.bind(this,bar)}
-        underlayColor="white">
+        underlayColor= 'transparent'>
         <Text style={styles.barButtonText} >{bar.name}</Text>
       </TouchableHighlight>
     </Image>

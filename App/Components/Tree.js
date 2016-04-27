@@ -93,7 +93,7 @@ class Tree extends React.Component{
   renderResults() {
     return (
       <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.mainContainerImg}>
         <ListView
           dataSource={this.state.dataSource}
@@ -122,14 +122,15 @@ renderOptions(option) {
 
   renderLoadingMessage(){
     return (
-      <View style={styles.loadingContainer} >
-        <ActivityIndicatorIOS
+      <Image
+      source={require('./img/woooooood.jpg')}
+      style={styles.loadingContainer}>        <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
           style={{margin: 15}} />
           <Text style={{color: '#fff'}}>Connecting...</Text>
-      </View>
+      </Image>
     );
   }
 };

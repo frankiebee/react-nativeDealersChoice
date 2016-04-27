@@ -19,7 +19,7 @@ class DrinkProfile extends React.Component{
   render(){
     return(
       <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.mainContainerImg}>
         <Text style={styles.clearBack}>{this.props.curentData.drink.name}</Text>
         <Text style={styles.clearBack}>{this.props.curentData.drink.description}</Text>
