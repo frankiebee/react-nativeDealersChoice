@@ -106,7 +106,7 @@ class Main extends React.Component{
   renderLoadingView() {
     return (
     <View
-      style={styles.loadingImage}>
+      style={styles.loadingContainer}>
         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
@@ -119,18 +119,20 @@ class Main extends React.Component{
   pageRender(){
     return(
       <View
-      style={styles.mainContainerImg}>
-      <TextInput
-        placeholder={"Search for a Bar near you"}
-        style={styles.searchInput}
-        value={this.state.barParams}
-        onChange={this.handleChange.bind(this)} />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="black">
-          <Text style={styles.buttonText}> SEARCH </Text>
-        </TouchableHighlight>
+      style={styles.mainContainer}>
+        <View style={styles.searchContainer}>
+          <TextInput
+            placeholder={"Search for a Bar near you"}
+            style={styles.searchInput}
+            value={this.state.barParams}
+            onChange={this.handleChange.bind(this)} />
+            <TouchableHighlight
+              style={styles.searchButton}
+              onPress={this.handleSubmit.bind(this)}
+              >
+              <Text style={styles.searchbuttonText}> SEARCH </Text>
+            </TouchableHighlight>
+          </View>
         <ListView
          dataSource={this.state.dataSource}
          renderRow={this.renderBar.bind(this)}
@@ -147,7 +149,13 @@ class Main extends React.Component{
         <Image
           source={{uri: bar.image_url.replace('ms.jpg','l.jpg')}}
           style={styles.barButtonImg}>
-            <Text style={styles.barButtonText} >{bar.name}</Text>
+            <View style={styles.barTextView}>
+              <Text
+                style={styles.barButtonText}
+                >
+                  {bar.name}
+             </Text>
+             </View>
           </Image>
       </TouchableHighlight>
     );
