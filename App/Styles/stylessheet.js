@@ -91,8 +91,6 @@ var styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   barTextView: {
-    borderTopRightRadius: 1,
-    borderBRightRadius: 1,
     alignSelf:"flex-end",
     backgroundColor: 'gainsboro',
     opacity: 0.5,
