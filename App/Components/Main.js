@@ -119,7 +119,6 @@ class Main extends React.Component{
 
   pageRender(){
     return(
-
       <Image
       source={{uri: "http://bit.ly/1NQeycd"}}
       style={styles.mainContainerImg}>

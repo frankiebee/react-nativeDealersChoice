@@ -17,7 +17,7 @@ var {
 var styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: '#111111'
+    backgroundColor: 'red'
   },
 });
 class DealersChoice extends React.Component{

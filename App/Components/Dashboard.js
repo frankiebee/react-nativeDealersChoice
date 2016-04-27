@@ -29,18 +29,17 @@ class Dashboard extends React.Component{
    _toDealer(){
       this.props.navigator.push({
         title: this.props.barDetails.name || "Menu details",
-        component: Tree,
-        passProps: {theEnd: false}
+        component: Tree
       });
   }
   render(){
     return (
       <Image
       source={{uri: "http://bit.ly/1NQeycd"}}
-      style={styles.buttonImg}>
+      style={styles.mainContainerImg}>
         <View>
           <TouchableHighlight
-          style={styles.button}
+          style={styles.buttonImg}
           onPress={this._toMenu.bind(this)}
           >
             <Text style={styles.buttonText} >Menu</Text>
@@ -48,7 +47,7 @@ class Dashboard extends React.Component{
         </View>
         <View>
           <TouchableHighlight
-          style={styles.button}
+          style={styles.buttonImg}
           onPress={this._toDealer.bind(this)}>
             <Text style={styles.buttonText}>Dealer's Choice</Text>
           </TouchableHighlight>

@@ -1,7 +1,7 @@
 var React = require('react-native');
 var Dimensions = require('Dimensions');
 var { width, height }= Dimensions.get('window');
-var { //things needed from react to make this work
+var {
   StyleSheet
 } = React;
 var styles = StyleSheet.create({
@@ -14,7 +14,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#48BBEC'
   },
-   loadingContainer: {
+  loadingContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
@@ -40,7 +40,6 @@ var styles = StyleSheet.create({
     paddingTop: 30,
     marginTop: 65,
     flexDirection: 'column',
-    backgroundColor: '#48BBEC'
   },
   loadingImage: {
     flex: 1,
@@ -93,6 +92,10 @@ var styles = StyleSheet.create({
     opacity: 0.5,
     backgroundColor: 'black',
     width: width
+  },
+
+  clearBack: {
+    backgroundColor: 'transparent',
   }
 });
 module.exports = styles;
