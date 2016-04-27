@@ -1,5 +1,4 @@
 'use strict';
-
 var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
@@ -13,6 +12,7 @@ var { //things needed from react to make this work
   Text,
   TextInput,
   TouchableHighlight,
+  Image,
   StyleSheet
 } = React;
 
@@ -66,34 +66,39 @@ class Main extends React.Component{
   }
 
   handleSubmit(){
-    // update our indicatorIOS spinner
-    this.setState({
-      isLoading: true
-    });
-    api.searchBar(this.state.barParams)
-      .then((res) => {
-        if(res.message === 'Not Found'){
-          this.setState({
-            error: 'Bar not found',
-            isLoading: false
-          })
-        } else {
-          this.props.navigator.push({
-            title: res.name || "Select an Option",
-            component: Dashboard,
-            passProps: {barInfo: res}
-          });
-          this.setState({
-            isLoading: false,
-            error: false,
-            username: ''
-          })
-        }
+      // update our indicatorIOS spinner
+  if(false){
+      this.setState({
+        isLoading: true
       });
+      api.searchBar(this.state.barParams)
+        .then((res) => {
+          if(res.message === 'Not Found'){
+            this.setState({
+              error: 'Bar not found',
+              isLoading: false
+            })
+          } else {
+            this.props.navigator.push({
+              title: res.name || "Select an Option",
+              component: Dashboard,
+              passProps: {barInfo: res}
+            });
+            this.setState({
+              isLoading: false,
+              error: false,
+              username: ''
+            })
+          }
+        });
+    }
   }
 
   _handleBarSelection(bar){
+<<<<<<< HEAD
     console.log("You are in Bar details")
+=======
+>>>>>>> 910538e72561d4120bfbdb1d01ae8c2176aba63e
     this.props.navigator.push({
       rightButtonTitle: 'log-in',
       title: bar.name || "Bar details",
@@ -104,30 +109,34 @@ class Main extends React.Component{
 
   renderLoadingView() {
     return (
-     <View style={styles.loadingContainer}>
+    <View
+      style={styles.loadingContainer}>
         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
           style={{margin: 15}} />
-      </View>
+    </View>
     );
   }
 
   pageRender(){
     return(
-      <View style={styles.mainContainer}>
-      <TextInput
-        placeholder={"Search for a Bar near you"}
-        style={styles.searchInput}
-        value={this.state.barParams}
-        onChange={this.handleChange.bind(this)} />
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor="white">
-          <Text style={styles.buttonText}> SEARCH </Text>
-        </TouchableHighlight>
+      <View
+      style={styles.mainContainer}>
+        <View style={styles.searchContainer}>
+          <TextInput
+            placeholder={"Search for a Bar near you"}
+            style={styles.searchInput}
+            value={this.state.barParams}
+            onChange={this.handleChange.bind(this)} />
+            <TouchableHighlight
+              style={styles.searchButton}
+              onPress={this.handleSubmit.bind(this)}
+              >
+              <Text style={styles.searchbuttonText}> Search </Text>
+            </TouchableHighlight>
+          </View>
         <ListView
          dataSource={this.state.dataSource}
          renderRow={this.renderBar.bind(this)}
@@ -138,14 +147,21 @@ class Main extends React.Component{
 
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
-    <View>
       <TouchableHighlight
-        style={styles.button}
         onPress={this._handleBarSelection.bind(this,bar)}
-        underlayColor="white">
-        <Text style={styles.buttonText} >{bar.name}</Text>
+        underlayColor="transparent">
+        <Image
+          source={{uri: bar.image_url.replace('ms.jpg','l.jpg')}}
+          style={styles.barButtonImg}>
+            <View style={styles.barTextView}>
+              <Text
+                style={styles.barButtonText}
+                >
+                  {bar.name}
+             </Text>
+             </View>
+          </Image>
       </TouchableHighlight>
-    </View>
     );
   }
 

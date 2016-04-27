@@ -10,18 +10,21 @@ var { //things needed from react to make this work
   Text,
   TextInput,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Image,
 } = React;
 
 class DrinkProfile extends React.Component{
 
   render(){
     return(
-      <View style={styles.mainContainer}>
-        <Text>{this.props.curentData.drink.name}</Text>
-        <Text>{this.props.curentData.drink.description}</Text>
-        <Text>{this.props.curentData.reviews[0].description}</Text>
-      </View>
+      <Image
+      source={{uri: "http://bit.ly/1NQeycd"}}
+      style={styles.mainContainerImg}>
+        <Text style={styles.clearBack}>{this.props.curentData.drink.name}</Text>
+        <Text style={styles.clearBack}>{this.props.curentData.drink.description}</Text>
+        <Text style={styles.clearBack}>{this.props.curentData.reviews[0].description}</Text>
+      </Image>
       )
   }
 

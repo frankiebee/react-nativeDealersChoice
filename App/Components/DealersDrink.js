@@ -19,7 +19,7 @@ class DealersDrink extends React.Component{
     return(
       <View style={styles.mainContainer}>
 
-        <View><Text>{this.props.dealersChoice.current_drink.name}</Text></View>
+        <View><Text>{this.props.dealersChoice.current_drink[0].name}</Text></View>
         <View>
           <TouchableHighlight
             style={styles.button}

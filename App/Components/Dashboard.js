@@ -9,7 +9,8 @@ var {
   View,
   Text,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Image
 } = React;
 
 class Dashboard extends React.Component{
@@ -28,29 +29,30 @@ class Dashboard extends React.Component{
    _toDealer(){
       this.props.navigator.push({
         title: this.props.barDetails.name || "Menu details",
-        component: Tree,
-        passProps: {theEnd: false}
+        component: Tree
       });
   }
   render(){
     return (
-      <View style={styles.mainContainer}>
+      <Image
+      source={{uri: "http://bit.ly/1NQeycd"}}
+      style={styles.mainContainerImg}>
         <View>
           <TouchableHighlight
-          style={styles.button}
+          style={styles.buttonImg}
           onPress={this._toMenu.bind(this)}
-          >
-            <Text style={styles.buttonText} >MENU for {this.props.barDetails.name}</Text>
+          underlayColor="white">
+            <Text style={styles.buttonText} >Menu</Text>
           </TouchableHighlight>
         </View>
         <View>
           <TouchableHighlight
-          style={styles.button}
+          style={styles.buttonImg}
           onPress={this._toDealer.bind(this)}>
-            <Text style={styles.buttonText}>Dealers Choice</Text>
+            <Text style={styles.buttonText}>Dealer's Choice</Text>
           </TouchableHighlight>
         </View>
-      </View>
+      </Image>
     )
   }
 
