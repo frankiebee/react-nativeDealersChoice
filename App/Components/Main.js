@@ -13,6 +13,7 @@ var { //things needed from react to make this work
   Text,
   TextInput,
   TouchableHighlight,
+  Image,
   StyleSheet
 } = React;
 
@@ -93,7 +94,6 @@ class Main extends React.Component{
   }
 
   _handleBarSelection(bar){
-    console.log("this shit is banans !!!!!")
     this.props.navigator.push({
       rightButtonTitle: 'log-in',
       title: bar.name || "Bar details",
@@ -104,19 +104,23 @@ class Main extends React.Component{
 
   renderLoadingView() {
     return (
-     <View style={styles.loadingContainer}>
+    <Image
+      source={require('./img/woooooood.jpg')}
+      style={styles.loadingImage}>
         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
           style={{margin: 15}} />
-      </View>
+    </Image>
     );
   }
 
   pageRender(){
     return(
-      <View style={styles.mainContainer}>
+      <Image
+      source={require('./img/woooooood.jpg')}
+      style={styles.mainContainerImg}>
       <TextInput
         placeholder={"Search for a Bar near you"}
         style={styles.searchInput}
@@ -125,27 +129,28 @@ class Main extends React.Component{
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleSubmit.bind(this)}
-          underlayColor="white">
+          underlayColor="black">
           <Text style={styles.buttonText}> SEARCH </Text>
         </TouchableHighlight>
         <ListView
          dataSource={this.state.dataSource}
          renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
-      </View>
+      </Image>
       );
   }
 
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
-    <View>
+    <Image
+      source={require('./img/Barborasso.jpg')}
+      style={styles.barButtonImg} >
       <TouchableHighlight
-        style={styles.button}
         onPress={this._handleBarSelection.bind(this,bar)}
         underlayColor="white">
-        <Text style={styles.buttonText} >{bar.name}</Text>
+        <Text style={styles.barButtonText} >{bar.name}</Text>
       </TouchableHighlight>
-    </View>
+    </Image>
     );
   }
 

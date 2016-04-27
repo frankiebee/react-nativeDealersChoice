@@ -1,5 +1,7 @@
 var React = require('react-native');
-var { //things needed from react to make this work
+var Dimensions = require('Dimensions');
+var { width, height }= Dimensions.get('window');
+var {
   StyleSheet
 } = React;
 var styles = StyleSheet.create({
@@ -10,14 +12,84 @@ var styles = StyleSheet.create({
     padding: 30,
     marginTop: 65,
     flexDirection: 'column',
-    backgroundColor: '#48BBEC'
+    backgroundColor: '#48BBEC',
+    opacity: 0.2
   },
-   loadingContainer: {
+  loadingContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#000'
+  },
+    barButtonImg: {
+    flex: 1,
+    height: 45,
+    flexDirection: 'row',
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    width: 300,
+    height: 100,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    overflow: 'hidden',
+    shadowColor: "#000000",
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 0.5,
+      width: 0.5
+    }
+  },
+  buttonImg: {
+    flex: 1,
+    height: 45,
+    flexDirection: 'row',
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    width: 300,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    opacity: 0.5,
+    overflow: 'hidden',
+    shadowColor: "#000000",
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 1
+    }
+  },
+  mainContainerImg: {
+    flex: 1,
+    paddingRight: 30,
+    paddingLeft: 30,
+    paddingTop: 30,
+    marginTop: 65,
+    flexDirection: 'column',
+    height: height,
+    width: width,
+  },
+  loadingImage: {
+    flex: 1,
+    paddingRight: 30,
+    paddingLeft: 30,
+    paddingTop: 30,
+    marginTop: 65,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    resizeMode: 'cover',
+    width: null,
+    height: null,
+    height: height,
+    width: width,
   },
   title: {
     marginBottom: 20,
@@ -37,20 +109,39 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
+    color: 'black',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    opacity: 1,
+  },
+  barButtonText: {
+    fontSize: 18,
+    fontFamily: 'Cochin',
+    color: 'black',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    opacity: 1,
   },
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,
     alignSelf: 'stretch',
     justifyContent: 'center'
+
   },
+  overlay: {
+    flex: 1,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    opacity: 0.5,
+    backgroundColor: 'black',
+    width: width
+  },
+  clearBack: {
+    backgroundColor: 'transparent',
+  }
 });
 module.exports = styles;
