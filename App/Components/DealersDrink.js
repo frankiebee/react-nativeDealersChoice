@@ -18,12 +18,11 @@ var {
 class DealersDrink extends React.Component{
   constructor(props) {
     super(props);
-    var drinkArray = this.props.dealersChoice.current_drink.length;
-    var nextDrink = drinkArray - 1;
-    console.log(nextDrink, "THIS IS DRINK ARRAY, AGAIN")
+    var drinkArray = this.props.dealersChoice.current_drink;
+    console.log(drinkArray, "THIS IS DRINK ARRAY, AGAIN")
     this.state = {
       isLoading: true,
-      nextDrink: nextDrink
+      nextDrink: drinkArray
     };
   }
 
@@ -39,10 +38,12 @@ class DealersDrink extends React.Component{
     });
   }
 
-  handleNextDrink(event) {
-    if(drinkArray === 0)
+  handleNextDrink() {
+    console.log(this, "YOU ARE IN handleNextDrink")
+    if(this.props.dealersChoice.current_drink)
       this.props.navigator.push({
         component: Dashboard,
+        passProps: {option: this.props.dealersChoice.current_drink}
       })
     else
       this.props.navigator.push({
@@ -52,7 +53,7 @@ class DealersDrink extends React.Component{
     this.setState({
       isLoading: false,
       error: false,
-      nextDrink: nextDrink
+      // nextDrink: nextDrink
     })
   }
 
