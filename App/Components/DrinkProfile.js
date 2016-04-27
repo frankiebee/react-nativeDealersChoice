@@ -9,7 +9,8 @@ var {
   Text,
   TextInput,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Image,
 } = React;
 
 class DrinkProfile extends React.Component{
@@ -40,12 +41,21 @@ class DrinkProfile extends React.Component{
     console.log(drink, "THIS IS DRINK IN PROFILE")
     return(
       <View>
-        <Text>{drink.name}</Text>
-        <Text>{drink.description}</Text>
+        <View>
+          <Text>{drink.name}</Text>
+          <Text>{drink.description}</Text>
+        </View>
+
+        <Image
+        source={{uri: "http://bit.ly/1NQeycd"}}
+        style={styles.mainContainerImg}>
+          <Text style={styles.clearBack}>{this.props.curentData.drink.name}</Text>
+          <Text style={styles.clearBack}>{this.props.curentData.drink.description}</Text>
+          <Text style={styles.clearBack}>{this.props.curentData.reviews[0].description}</Text>
+        </Image>
       </View>
     )
   }
-
 }
 
 module.exports = DrinkProfile;

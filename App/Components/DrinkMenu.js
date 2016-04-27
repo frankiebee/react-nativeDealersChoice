@@ -5,7 +5,7 @@ var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var DrinkProfile = require('./DrinkProfile')
 
-var { //things needed from react to make this work
+var {
   AlertIOS,
   ActivityIndicatorIos,
   ListView,
@@ -13,7 +13,8 @@ var { //things needed from react to make this work
   Text,
   TextInput,
   TouchableHighlight,
-  StyleSheet
+  StyleSheet,
+  Image,
 } = React;
 
 class DrinkMenu extends React.Component{
@@ -41,7 +42,6 @@ class DrinkMenu extends React.Component{
     fetch('http://localhost:3000/bars/1/drinks/'+drink.id)
     .then((response) => response.json())
     .then(responseData => {
-      console.log("this shit is banans !!!!!")
         this.props.navigator.push({
           title: drink.name || "drink details",
           component: DrinkProfile,
@@ -51,11 +51,13 @@ class DrinkMenu extends React.Component{
   }
   renderLoadingView() {
     return (
-      <View style={styles.mainContainer}>
+      <Image
+      source={{uri: "http://bit.ly/1NQeycd"}}
+      style={styles.loadingImage}>
         <Text>
           Loading...
         </Text>
-      </View>
+      </Image>
     );
   }
   render(){
@@ -63,24 +65,26 @@ class DrinkMenu extends React.Component{
       this.renderLoadingView();
     }
       return(
-      <View style={styles.mainContainer}>
+      <Image
+      source={{uri: "http://bit.ly/1NQeycd" }}
+      style={styles.mainContainerImage}>
         <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMenu.bind(this)}/>
-      </View>
+      </Image>
       );
   }
   renderMenu(drink){
     return(
     <View>
       <TouchableHighlight
-        style={styles.button}
+        style={styles.buttonImg}
         value={drink}
         onPress={this._handleDrinkSelection.bind(this, drink)}
         underlayColor={"white"}>
         <Text style={styles.buttonText} >{drink.name}</Text>
       </TouchableHighlight>
-      <Text>{drink.description}</Text>
+      <Text style={styles.clearBack}>{drink.description}</Text>
     </View>
       );
   }

@@ -15,12 +15,10 @@ var {
   StyleSheet
 } = React;
 
-
 class DealersDrink extends React.Component{
   constructor(props) {
     super(props);
     var drinkArray = this.props.dealersChoice.current_drink;
-    console.log(drinkArray, "THIS IS DRINK ARRAY, AGAIN")
     this.state = {
       isLoading: true,
       nextDrink: drinkArray
@@ -40,14 +38,13 @@ class DealersDrink extends React.Component{
     });
   }
 
-  render(){
+  render() {
     console.log(this, "THIS IS THIS IN RENDER")
     return(
       <View style={styles.mainContainer}>
         <View>
           <Text>{this.props.dealersChoice.current_drink.name}</Text>
         </View>
-
         <TouchableHighlight
           style={styles.button}
           onPress={this.handleDrinkSelection.bind(this)}>
@@ -57,7 +54,7 @@ class DealersDrink extends React.Component{
     )
   }
 
-} // end class DealersDrink
+}
 
 
 module.exports = DealersDrink;

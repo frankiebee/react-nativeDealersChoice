@@ -1,6 +1,6 @@
  var React = require('react-native');
 var DealersDrink = require('./DealersDrink')
-var stylesMain = require('../Styles/stylessheet')
+var styles = require('../Styles/stylessheet')
 
 var {
   ActivityIndicatorIOS,
@@ -9,39 +9,11 @@ var {
   StyleSheet,
   Text,
   TouchableHighlight,
-  View
+  View,
+  Image,
 } = React;
 
-var styles = StyleSheet.create({
-  mainContainer: {
-    marginTop: 20,
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    backgroundColor: '#48BBEC'
-  },
-  loadingContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#000'
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: '#C0C0C0'
-  },
-  text: {
-    color: '#C0C0C0',
-    fontSize: 30,
-    fontWeight: 'bold',
-  }
-});
 
-// const NUM_BRANCHES = 5;
 class Tree extends React.Component{
   render() {
 
@@ -85,50 +57,46 @@ class Tree extends React.Component{
 
       if(isend) {
         console.log("We should be moving on now")
-            that.props.navigator.push({
-           title: jsonData.current_drink[0].name,
-           component: DealersDrink,
-           passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
-         })
-       }
+          that.props.navigator.replace({
+          title: jsonData.current_drink.name,
+          component: DealersDrink,
+          passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
+        })
+      }
     })
-      .catch( error => console.log('fetch error ' + error) ).done();
+    .catch( error => console.log('fetch error ' + error) ).done();
 
   }
 
   handleSelection(option) {
     console.log("this is when you choose")
-
     this.fetchTreeJSON(option.id, this)
+
     this.setState({
       isLoading: false,
       error: false,
     })
   }
-
+  componentWillMount(){
+    console.log("Component Will mount?")
+  }
   componentDidMount() {
     console.log("componentDidMount")
-    if(this.props.isEnd){
-      this.props.navigator.push({
-       title: option.current_drink.name,
-       component: DealersDrink,
-       passProps: {dealersChoice: option, theEnd: this.state.isTheEnd}
-     });
-    }
     if(this.props.option === undefined){
        this.fetchTreeJSON(0,this);
     }
-
   }
 
   renderResults() {
     return (
-      <View style={stylesMain.mainContainer}>
+      <Image
+      source={{uri: "http://bit.ly/1NQeycd"}}
+      style={styles.mainContainerImg}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderOptions.bind(this)}>
         </ListView>
-      </View>
+      </Image>
     )
   }
 renderOptions(option) {
@@ -136,14 +104,14 @@ renderOptions(option) {
       <View>
         <View>
           <TouchableHighlight
-            style={stylesMain.button}
+            style={styles.button}
             onPressIn={this.handleSelection.bind(this,option)}
             underlayColor="white">
-            <Text style={stylesMain.buttonText}>{option.name}</Text>
+            <Text style={styles.buttonText}>{option.name}</Text>
           </TouchableHighlight>
         </View>
         <View>
-          <Text>{option.description}</Text>
+          <Text style={styles.clearBack}>{option.description}</Text>
         </View>
       </View>
     )
