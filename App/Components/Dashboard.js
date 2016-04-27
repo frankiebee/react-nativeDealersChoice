@@ -35,7 +35,7 @@ class Dashboard extends React.Component{
   render(){
     return (
       <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      source={require('./img/woooooood.jpg')}
       style={styles.mainContainerImg}>
         <View>
           <TouchableHighlight
