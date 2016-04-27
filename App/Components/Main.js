@@ -5,7 +5,6 @@ var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 var Dashboard = require('./Dashboard');
 var Login = require('./login');
-var BACKGROUND_URL = "./img/woooooood.jpg";
 
 var { //things needed from react to make this work
   ActivityIndicatorIOS,
@@ -17,6 +16,8 @@ var { //things needed from react to make this work
   Image,
   StyleSheet
 } = React;
+
+
 
 
 class Main extends React.Component{
@@ -106,7 +107,7 @@ class Main extends React.Component{
   renderLoadingView() {
     return (
     <Image
-      source={require(BACKGROUND_URL)}
+      source={require("./img/woooooood.jpg")}
       style={styles.loadingImage}>
         <ActivityIndicatorIOS
           animating={true}
@@ -120,7 +121,7 @@ class Main extends React.Component{
   pageRender(){
     return(
       <Image
-      source={require(BACKGROUND_URL)}
+      source={require("./img/woooooood.jpg")}
       style={styles.mainContainerImg}>
       <TextInput
         placeholder={"Search for a Bar near you"}
