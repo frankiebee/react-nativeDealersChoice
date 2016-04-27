@@ -24,24 +24,16 @@ var styles = StyleSheet.create({
   },
     barButtonImg: {
     flex: 1,
-    height: 45,
-    flexDirection: 'row',
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    width: 300,
     height: 100,
+    flexDirection: 'row',
+    marginBottom: 5,
+    marginTop: 5,
+    width: width,
     alignSelf: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    overflow: 'hidden',
-    shadowColor: "#000000",
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 0.5,
-      width: 0.5
-    }
+
+
   },
   buttonImg: {
     flex: 1,
@@ -138,10 +130,16 @@ var styles = StyleSheet.create({
     top: 0,
     opacity: 0.5,
     backgroundColor: 'black',
-    width: width
+    width: width,
   },
   clearBack: {
     backgroundColor: 'transparent',
-  }
+  },
+  listView:{
+    width: width,
+    marginLeft: -30,
+
+  },
+
 });
 module.exports = styles;
