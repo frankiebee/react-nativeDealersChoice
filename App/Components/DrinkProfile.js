@@ -2,8 +2,7 @@ var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
 
-var { //things needed from react to make this work
-  AlertIOS,
+var {
   ActivityIndicatorIos,
   ListView,
   View,
@@ -16,22 +15,34 @@ var { //things needed from react to make this work
 class DrinkProfile extends React.Component{
   constructor(props) {
     super(props);
-    console.log(this, "YOU ARE IN DRINK PROFILE")
-    console.log(this.props.option.props.dealersChoice.current_drink[0].name, "THIS IS THE DRINK NAME")
+    var choices = this.props.option.props.dealersChoice.current_drink;
+    var ds = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 != row2
+    })
     this.state = {
-      isLoading: true,
-    };
+      drinkDataSource: ds.cloneWithRows(choices)
+    }
   }
 
-  render(){
+  render() {
     return(
       <View style={styles.mainContainer}>
-        <Text>{this.props.option.props.dealersChoice.current_drink[0].name}
-        </Text>
-        <Text>{this.props.option.props.dealersChoice.current_drink[0].description}
-        </Text>
+        <ListView
+          dataSource={this.state.drinkDataSource}
+          renderRow={(drink) => {
+            return this.renderDrinkList(drink)
+          }}/>
       </View>
+    )
+  }
 
+  renderDrinkList(drink) {
+    console.log(drink, "THIS IS DRINK IN PROFILE")
+    return(
+      <View>
+        <Text>{drink.name}</Text>
+        <Text>{drink.description}</Text>
+      </View>
     )
   }
 

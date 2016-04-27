@@ -2,6 +2,7 @@ var React = require('react-native');
 var DrinkProfile = require('./DrinkProfile');
 var Dashboard = require('./Dashboard');
 var styles = require('../Styles/stylessheet');
+var Main = require('./Main');
 
 var {
  AlertIOS,
@@ -27,6 +28,7 @@ class DealersDrink extends React.Component{
   }
 
   handleDrinkSelection(event) {
+    console.log(this, "THIS IS THIS IN handleDrinkSelection")
     this.props.navigator.push({
       title: this.props.dealersChoice.current_drink.name,
       component: DrinkProfile,
@@ -36,25 +38,6 @@ class DealersDrink extends React.Component{
       isLoading: false,
       error: false
     });
-  }
-
-  handleNextDrink() {
-    console.log(this, "YOU ARE IN handleNextDrink")
-    if(this.props.dealersChoice.current_drink)
-      this.props.navigator.push({
-        component: Dashboard,
-        passProps: {option: this.props.dealersChoice.current_drink}
-      })
-    else
-      this.props.navigator.push({
-        component: DealersDrink,
-        passProps: {option: this}
-      })
-    this.setState({
-      isLoading: false,
-      error: false,
-      // nextDrink: nextDrink
-    })
   }
 
   render(){
@@ -70,15 +53,10 @@ class DealersDrink extends React.Component{
           onPress={this.handleDrinkSelection.bind(this)}>
           <Text>Into It</Text>
         </TouchableHighlight>
-
-        <TouchableHighlight
-          style={styles.button}
-          onPress={this.handleNextDrink.bind(this)}>
-          <Text>Next drink, please</Text>
-        </TouchableHighlight>
       </View>
     )
   }
+
 } // end class DealersDrink
 
 
