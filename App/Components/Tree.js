@@ -59,19 +59,12 @@ class Tree extends React.Component{
 
       if(isend){
         console.log("We should be moving on now")
-            that.props.navigator.push({
+          that.props.navigator.replace({
            title: jsonData.current_drink.name,
            component: DealersDrink,
            passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
          })
        }
-       else{
-      that.props.navigator.push({
-        title: responseData.name,
-        component: Tree,
-        passProps: {option: responseData, theEnd: this.state.isTheEnd}
-      });
-    }
 
       })
       .catch( error => console.log('fetch error ' + error) ).done();
@@ -80,27 +73,21 @@ class Tree extends React.Component{
 
   handleSelection(option) {
     console.log("this is when you choose")
-
     this.fetchTreeJSON(option.id, this)
+
     this.setState({
       isLoading: false,
       error: false,
     })
   }
-
+  componentWillMount(){
+    console.log("Component Will mount?")
+  }
   componentDidMount() {
     console.log("This is when i mount...")
-    if(this.props.isEnd){
-      this.props.navigator.push({
-       title: option.current_drink.name,
-       component: DealersDrink,
-       passProps: {dealersChoice: option, theEnd: this.state.isTheEnd}
-     });
-    }
     if(this.props.option === undefined){
        this.fetchTreeJSON(0,this);
     }
-
   }
 
   renderResults() {
