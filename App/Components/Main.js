@@ -1,5 +1,4 @@
 'use strict';
-
 var React = require('react-native');
 var api = require('../Utils/api');
 var styles = require('../Styles/stylessheet');
@@ -67,30 +66,32 @@ class Main extends React.Component{
   }
 
   handleSubmit(){
-    // update our indicatorIOS spinner
-    this.setState({
-      isLoading: true
-    });
-    api.searchBar(this.state.barParams)
-      .then((res) => {
-        if(res.message === 'Not Found'){
-          this.setState({
-            error: 'Bar not found',
-            isLoading: false
-          })
-        } else {
-          this.props.navigator.push({
-            title: res.name || "Select an Option",
-            component: Dashboard,
-            passProps: {barInfo: res}
-          });
-          this.setState({
-            isLoading: false,
-            error: false,
-            username: ''
-          })
-        }
+      // update our indicatorIOS spinner
+  if(false){
+      this.setState({
+        isLoading: true
       });
+      api.searchBar(this.state.barParams)
+        .then((res) => {
+          if(res.message === 'Not Found'){
+            this.setState({
+              error: 'Bar not found',
+              isLoading: false
+            })
+          } else {
+            this.props.navigator.push({
+              title: res.name || "Select an Option",
+              component: Dashboard,
+              passProps: {barInfo: res}
+            });
+            this.setState({
+              isLoading: false,
+              error: false,
+              username: ''
+            })
+          }
+        });
+    }
   }
 
   _handleBarSelection(bar){
@@ -104,22 +105,20 @@ class Main extends React.Component{
 
   renderLoadingView() {
     return (
-    <Image
-      source={require('./img/woooooood.jpg')}
+    <View
       style={styles.loadingImage}>
         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
           style={{margin: 15}} />
-    </Image>
+    </View>
     );
   }
 
   pageRender(){
     return(
-      <Image
-      source={require('./img/woooooood.jpg')}
+      <View
       style={styles.mainContainerImg}>
       <TextInput
         placeholder={"Search for a Bar near you"}
@@ -136,21 +135,21 @@ class Main extends React.Component{
          dataSource={this.state.dataSource}
          renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
-      </Image>
+      </View>
       );
   }
 
   renderBar(bar: string, sectionID: number, rowID: number){
     return(
-    <Image
-      source={require('./img/Barborasso.jpg')}
-      style={styles.barButtonImg} >
       <TouchableHighlight
         onPress={this._handleBarSelection.bind(this,bar)}
-        underlayColor="white">
-        <Text style={styles.barButtonText} >{bar.name}</Text>
+        underlayColor="transparent">
+        <Image
+          source={{uri: bar.image_url.replace('ms.jpg','l.jpg')}}
+          style={styles.barButtonImg}>
+            <Text style={styles.barButtonText} >{bar.name}</Text>
+          </Image>
       </TouchableHighlight>
-    </Image>
     );
   }
 
