@@ -130,7 +130,7 @@ class Main extends React.Component{
               style={styles.searchButton}
               onPress={this.handleSubmit.bind(this)}
               >
-              <Text style={styles.searchbuttonText}> SEARCH </Text>
+              <Text style={styles.searchbuttonText}> Search </Text>
             </TouchableHighlight>
           </View>
         <ListView
