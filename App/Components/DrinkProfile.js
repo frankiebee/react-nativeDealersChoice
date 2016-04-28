@@ -27,6 +27,7 @@ class DrinkProfile extends React.Component{
 
   render() {
     return(
+
       <View style={styles.mainContainer}>
         <ListView
           dataSource={this.state.drinkDataSource}

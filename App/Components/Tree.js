@@ -89,6 +89,7 @@ class Tree extends React.Component{
 
   renderResults() {
     return (
+
       <View
       style={styles.treeContainer}>
         <ListView
@@ -101,13 +102,12 @@ class Tree extends React.Component{
 renderOptions(option) {
     return (
       <View style={styles.option}>
-        <View >
+        <View>
           <TouchableHighlight
             style={styles.treeOptions}
             underlayColor="transparent"
             activeOpacity= {0.5}
-            onPressOut={this.handleSelection.bind(this,option)}
-            >
+            onPressOut={this.handleSelection.bind(this,option)}>
             <View style={styles.clickableSpace}>
               <Text style={styles.treeText}>{option.name}</Text>
               <View>
@@ -123,14 +123,16 @@ renderOptions(option) {
 
   renderLoadingMessage(){
     return (
-      <View style={styles.loadingContainer} >
-        <ActivityIndicatorIOS
+      <Image
+      source={require('./img/woooooood.jpg')}
+      style={styles.loadingContainer}>
+         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
           style={{margin: 15}} />
           <Text style={{color: '#fff'}}>Connecting...</Text>
-      </View>
+      </Image>
     );
   }
 };
