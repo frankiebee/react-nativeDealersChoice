@@ -1,6 +1,7 @@
-var React = require('react-native');
+ var React = require('react-native');
 var DealersDrink = require('./DealersDrink')
 var styles = require('../Styles/stylessheet')
+
 var {
   ActivityIndicatorIOS,
   Component,
@@ -13,8 +14,6 @@ var {
 } = React;
 
 
-
-// const NUM_BRANCHES = 5;
 class Tree extends React.Component{
   render() {
 
@@ -45,29 +44,27 @@ class Tree extends React.Component{
       .then( response => response.json() )
       .then( jsonData => {
 
-        var isend = false
+      var isend = false
 
-        if(jsonData.current_drink !== undefined){isend = true; }
+      if(jsonData.current_drink !== undefined){isend = true; }
+        this.props.isEnd = isend
+            this.setState({
+          isTheEnd: isend,
+          upComing: jsonData,
+          dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
+          isLoading: false
+        })
 
-          this.props.isEnd = isend
-              this.setState({
-            isTheEnd: isend,
-            upComing: jsonData,
-            dataSource: this.state.dataSource.cloneWithRows(jsonData, jsonData.id),
-            isLoading: false
-    })
-
-      if(isend){
+      if(isend) {
         console.log("We should be moving on now")
           that.props.navigator.replace({
-           title: jsonData.current_drink.name,
-           component: DealersDrink,
-           passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
-         })
-       }
-
-      })
-      .catch( error => console.log('fetch error ' + error) ).done();
+          title: jsonData.current_drink.name,
+          component: DealersDrink,
+          passProps: {dealersChoice: jsonData, theEnd: that.state.isTheEnd}
+        })
+      }
+    })
+    .catch( error => console.log('fetch error ' + error) ).done();
 
   }
 
@@ -84,7 +81,7 @@ class Tree extends React.Component{
     console.log("Component Will mount?")
   }
   componentDidMount() {
-    console.log("This is when i mount...")
+    console.log("componentDidMount")
     if(this.props.option === undefined){
        this.fetchTreeJSON(0,this);
     }
@@ -136,5 +133,4 @@ renderOptions(option) {
 };
 
 module.exports = Tree;
-
 

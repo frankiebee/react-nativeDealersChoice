@@ -21,11 +21,11 @@ class Main extends React.Component{
 
   content(){
     this.state.bars.map(function(item){
-        return (
-          <View key={item.name} style={ styles.content }>
-            <Text>{item.name}</Text>
-          </View>
-        );}
+      return (
+        <View key={item.name} style={ styles.content }>
+          <Text>{item.name}</Text>
+        </View>
+      );}
     )
   }
 
@@ -43,6 +43,7 @@ class Main extends React.Component{
       error: false
     }
   }
+
   componentDidMount() {
     this.loadBarList();
   }
@@ -50,7 +51,6 @@ class Main extends React.Component{
   loadBarList(){
      api.barList()
     .then((responseData) => {
-
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(responseData.businesses, responseData.businesses.id),
         loaded: true,
@@ -66,7 +66,6 @@ class Main extends React.Component{
   }
 
   handleSubmit(){
-      // update our indicatorIOS spinner
   if(false){
       this.setState({
         isLoading: true
@@ -171,5 +170,4 @@ class Main extends React.Component{
 };
 
 //export for use
-
 module.exports = Main;
