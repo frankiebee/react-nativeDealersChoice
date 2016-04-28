@@ -13,6 +13,12 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: "flex-start",
   },
+  buttonContainer: {
+    position: 'absolute',
+    top: 100,
+    left: 115,
+  },
+
   searchContainer:{
   flexDirection: 'row',
   },
@@ -50,7 +56,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000'
+    backgroundColor: 'gray'
   },
 
   mainContainerImg: {
@@ -78,8 +84,6 @@ var styles = StyleSheet.create({
     opacity: 1,
   },
   barButtonImg: {
-    borderColor: 'black',
-    borderWidth: 1,
     flex: 1,
     height: 100,
     flexDirection: 'row',
