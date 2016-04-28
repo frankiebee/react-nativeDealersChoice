@@ -4,13 +4,13 @@ var styles = require('../Styles/stylessheet');
 
 var {
   ActivityIndicatorIos,
+  Image,
   ListView,
   View,
   Text,
   TextInput,
   TouchableHighlight,
-  StyleSheet,
-  Image,
+  StyleSheet
 } = React;
 
 class DrinkProfile extends React.Component{
@@ -32,7 +32,7 @@ class DrinkProfile extends React.Component{
           dataSource={this.state.drinkDataSource}
           renderRow={(drink) => {
             return this.renderDrinkList(drink)
-          }}/>
+          }} />
       </View>
     )
   }
@@ -41,21 +41,20 @@ class DrinkProfile extends React.Component{
     console.log(drink, "THIS IS DRINK IN PROFILE")
     return(
       <View>
-        <View>
           <Text>{drink.name}</Text>
           <Text>{drink.description}</Text>
-        </View>
-
-        <Image
-        source={{uri: "http://bit.ly/1NQeycd"}}
-        style={styles.mainContainerImg}>
-          <Text style={styles.clearBack}>{this.props.curentData.drink.name}</Text>
-          <Text style={styles.clearBack}>{this.props.curentData.drink.description}</Text>
-          <Text style={styles.clearBack}>{this.props.curentData.reviews[0].description}</Text>
-        </Image>
       </View>
     )
   }
+
 }
 
 module.exports = DrinkProfile;
+
+
+
+      // Image wrap is not permitting ListView
+        // <Image
+        //   source={{uri: "http://bit.ly/1NQeycd"}}
+        //   style={styles.mainContainerImg}>
+        // </Image>
