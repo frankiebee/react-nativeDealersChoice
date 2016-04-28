@@ -1,47 +1,37 @@
+//   <View>
+      //     <TouchableHighlight
+      //       style={styles.button}
+      //       onPress={this.handleNextDrinkSelection.bind(this, this.props.dealersChoice.current_drink)}>
+      //       <Text>No Thanks</Text>
+      //       // renders next drink in array
+      //     </TouchableHighlight>
+      //   </View>
+      // </View>
 
-var url = `http://localhost:3000/tags?={tag.id}`;
+  // handleDrinkSelection(drink) {
+  //   console.log("You are in the drink selection")
+  //   this.props.navigator.push({
+  //     title: drink.name,
+  //     component: DrinkProfile,
+  //     passProps: {option: drink}
+  //   });
+  //   this.setState({
+  //     isLoading: false,
+  //     error: false
+  //   })
+  // }
 
+  // handleNextDrinkSelection(handleNextDrinkSelection) {
+  //   console.log("User does not want a drink, send to main!")
+  //   this.props.navigator.push({
+  //     title: nextDrink.name,
+  //     component: Tree,
+  //     passProps: {option: nextDrink}
+  //   })
+  //   this.setState({
+  //     isLoading: false,
+  //     error: false
+  //   })
+  // }
 
-var swiper = React.createClass({
-	render: function() {
-		return (
-			<Swiper style={styles.wrapper> showsButtons={true}>
-				<View style={styles.slide1}>
-					<Text style={styles.text}>Hello Swiper</Text>
-				</View>
-				<View style={styles.slide2}>
-					<Text style={styles.text}>Beautiful</Text>
-				</View>
-			</Swiper>
-		)
-	}
-
-// from class render method
-		return (
-		<View style={styles.mainContainer}>
-			<Text style={styles.titleText}>
-				Spiritous or Gentle?
-			</Text>
-		</View>
-		);
-
-
-
-		renderResults() {
-		var {treeJSON, isLoading} = this.state;
-		if( !isLoading ) {
-			return (
-				<Swiper style={styles.wrapper} showsButtons={true}>
-						{treeJson.map((tag, index) => {
-							return (
-								<View style={styles.slide1}>
-									<Text key={index} style={styles.text}>{tag.name}</Text>
-								</View>
-							)
-						})}
-				</Swiper>
-			);
-		}
-	}
-
-		
+// end DealersDrink class

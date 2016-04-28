@@ -1,6 +1,8 @@
 var React = require('react-native');
-var DrinkProfile = require('./DrinkProfile')
+var DrinkProfile = require('./DrinkProfile');
+var Dashboard = require('./Dashboard');
 var styles = require('../Styles/stylessheet');
+var Main = require('./Main');
 
 var {
  AlertIOS,
@@ -14,27 +16,51 @@ var {
 } = React;
 
 class DealersDrink extends React.Component{
-  componentDidMount(){
+  constructor(props) {
+    super(props);
+    var drinkArray = this.props.dealersChoice.current_drink;
+    this.state = {
+      isLoading: true,
+      nextDrink: drinkArray
+    };
   }
-  render(){
+
+  handleDrinkSelection(event) {
+    console.log(this, "THIS IS THIS IN handleDrinkSelection")
+    this.props.navigator.push({
+      title: this.props.dealersChoice.current_drink.name,
+      component: DrinkProfile,
+      passProps: {option: this}
+    });
+    this.setState({
+      isLoading: false,
+      error: false
+    });
+  }
+
+  render() {
+    console.log(this, "THIS IS THIS IN RENDER")
     return(
       <View style={styles.mainContainer}>
-
-        <View><Text>{this.props.dealersChoice.current_drink[0].name}</Text></View>
         <View>
-          <TouchableHighlight>
-            <Text>Into It</Text>
-          </TouchableHighlight>
+          <Text>{this.props.dealersChoice.current_drink.name}</Text>
         </View>
-
-        <View>
-          <TouchableHighlight>
-            <Text>No Thanks</Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleDrinkSelection.bind(this)}>
+          <Text>Into It</Text>
+        </TouchableHighlight>
       </View>
-      )
+    )
   }
+
 }
 
+
 module.exports = DealersDrink;
+
+
+
+
+
+
