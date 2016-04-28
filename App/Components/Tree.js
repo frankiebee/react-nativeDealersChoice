@@ -102,13 +102,12 @@ class Tree extends React.Component{
 renderOptions(option) {
     return (
       <View style={styles.option}>
-        <View >
+        <View>
           <TouchableHighlight
             style={styles.treeOptions}
             underlayColor="transparent"
             activeOpacity= {0.5}
-            onPressOut={this.handleSelection.bind(this,option)}
-            >
+            onPressOut={this.handleSelection.bind(this,option)}>
             <View style={styles.clickableSpace}>
               <Text style={styles.treeText}>{option.name}</Text>
               <View>
@@ -126,7 +125,8 @@ renderOptions(option) {
     return (
       <Image
       source={require('./img/woooooood.jpg')}
-      style={styles.loadingContainer}>        <ActivityIndicatorIOS
+      style={styles.loadingContainer}>
+         <ActivityIndicatorIOS
           animating={true}
           color={'#fff'}
           size={'small'}
