@@ -7,7 +7,7 @@ var DrinkProfile = require('./DrinkProfile')
 
 var {
   AlertIOS,
-  ActivityIndicatorIos,
+  ActivityIndicatorIOS,
   ListView,
   View,
   Text,
@@ -45,18 +45,20 @@ class DrinkMenu extends React.Component{
         this.props.navigator.push({
           title: drink.name || "drink details",
           component: DrinkProfile,
-          passProps: {curentData: responseData}
+          passProps: {drink: responseData}
       });
   }).done();
   }
   renderLoadingView() {
-    return (
-      <View
+   return (
+    <View
       style={styles.loadingContainer}>
-        <Text>
-          Loading...
-        </Text>
-      </View>
+        <ActivityIndicatorIOS
+          animating={true}
+          color={'#fff'}
+          size={'small'}
+          style={{margin: 15}} />
+    </View>
     );
   }
   render(){
@@ -66,7 +68,9 @@ class DrinkMenu extends React.Component{
       return(
       <View
       style={styles.mainContainer}>
+        <Text style={styles.title}>Drink Menu</Text>
         <ListView
+        style={styles.listView}
         dataSource={this.state.dataSource}
         renderRow={this.renderMenu.bind(this)}/>
       </View>
@@ -74,16 +78,21 @@ class DrinkMenu extends React.Component{
   }
   renderMenu(drink){
     return(
-    <View>
-      <TouchableHighlight
-        style={styles.buttonImg}
-        value={drink}
+     <TouchableHighlight
         onPress={this._handleDrinkSelection.bind(this, drink)}
-        underlayColor={"white"}>
-        <Text style={styles.buttonText} >{drink.name}</Text>
+        underlayColor="transparent">
+        <Image
+          source={{uri: drink.image_url}}
+          style={styles.barButtonImg}>
+            <View style={styles.barTextView}>
+              <Text
+                style={styles.barButtonText}
+                >
+                  {drink.name}
+             </Text>
+             </View>
+          </Image>
       </TouchableHighlight>
-      <Text style={styles.clearBack}>{drink.description}</Text>
-    </View>
       );
   }
 
