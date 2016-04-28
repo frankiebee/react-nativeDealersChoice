@@ -136,6 +136,8 @@ var styles = StyleSheet.create({
     marginLeft: 0,
     backgroundColor:"#f5f5f5",
   },
-
+  test: {
+    color: "#000"
+  }
 });
 module.exports = styles;
