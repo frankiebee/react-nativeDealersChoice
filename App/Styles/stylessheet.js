@@ -68,10 +68,12 @@ var styles = StyleSheet.create({
     width: width,
   },
   title: {
-    marginBottom: 20,
+    fontFamily: 'Cochin-BoldItalic',
     fontSize: 25,
     textAlign: 'center',
-    color: '#fff'
+    paddingTop: 10,
+    paddingLeft: 15,
+    color: 'black'
   },
 
   buttonText: {
@@ -121,15 +123,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center'
 
   },
-  overlay: {
-    flex: 1,
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    opacity: 0.5,
-    backgroundColor: 'black',
-    width: width,
-  },
+
 
   listView:{
     width: width,

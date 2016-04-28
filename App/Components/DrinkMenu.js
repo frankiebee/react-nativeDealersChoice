@@ -7,7 +7,7 @@ var DrinkProfile = require('./DrinkProfile')
 
 var {
   AlertIOS,
-  ActivityIndicatorIos,
+  ActivityIndicatorIOS,
   ListView,
   View,
   Text,
@@ -50,14 +50,15 @@ class DrinkMenu extends React.Component{
   }).done();
   }
   renderLoadingView() {
-    return (
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
-      style={styles.loadingImage}>
-        <Text>
-          Loading...
-        </Text>
-      </Image>
+   return (
+    <View
+      style={styles.loadingContainer}>
+        <ActivityIndicatorIOS
+          animating={true}
+          color={'#fff'}
+          size={'small'}
+          style={{margin: 15}} />
+    </View>
     );
   }
   render(){
@@ -65,27 +66,34 @@ class DrinkMenu extends React.Component{
       this.renderLoadingView();
     }
       return(
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd" }}
-      style={styles.mainContainerImage}>
+
+      <View
+      style={styles.mainContainer}>
+        <Text style={styles.title}>Drink Menu</Text>
         <ListView
+        style={styles.listView}
         dataSource={this.state.dataSource}
         renderRow={this.renderMenu.bind(this)}/>
-      </Image>
+      </View>
       );
   }
   renderMenu(drink){
     return(
-    <View>
-      <TouchableHighlight
-        style={styles.buttonImg}
-        value={drink}
+     <TouchableHighlight
         onPress={this._handleDrinkSelection.bind(this, drink)}
-        underlayColor={"white"}>
-        <Text style={styles.buttonText} >{drink.name}</Text>
+        underlayColor="transparent">
+        <Image
+          source={{uri: drink.image_url}}
+          style={styles.barButtonImg}>
+            <View style={styles.barTextView}>
+              <Text
+                style={styles.barButtonText}
+                >
+                  {drink.name}
+             </Text>
+             </View>
+          </Image>
       </TouchableHighlight>
-      <Text style={styles.clearBack}>{drink.description}</Text>
-    </View>
       );
   }
 
