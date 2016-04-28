@@ -1,12 +1,12 @@
+var api = require('../Utils/api');
 var React = require('react-native');
 var DrinkProfile = require('./DrinkProfile');
 var Dashboard = require('./Dashboard');
 var styles = require('../Styles/stylessheet');
-var Main = require('./Main');
 
 var {
- AlertIOS,
   ActivityIndicatorIos,
+  Image,
   ListView,
   View,
   Text,
@@ -18,15 +18,18 @@ var {
 class DealersDrink extends React.Component{
   constructor(props) {
     super(props);
-    var drinkArray = this.props.dealersChoice.current_drink;
+    var choices = this.props.dealersChoice.current_drink;
+    var ds = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 != row2
+    })
     this.state = {
       isLoading: true,
-      nextDrink: drinkArray
-    };
+      drinkDataSource: ds.cloneWithRows(choices)
+    }
   }
 
-  handleDrinkSelection(event) {
-    console.log(this, "THIS IS THIS IN handleDrinkSelection")
+  displayDrinkProfile(event) {
+    console.log(this, "THIS IS THIS IN displayDrinkProfile")
     this.props.navigator.push({
       title: this.props.dealersChoice.current_drink.name,
       component: DrinkProfile,
@@ -38,21 +41,32 @@ class DealersDrink extends React.Component{
     });
   }
 
-  render() {
-    console.log(this, "THIS IS THIS IN RENDER")
+  renderDrinkList(drink) {
+    console.log(drink, "THIS IS DRINK IN DEALERSDRINK")
     return(
-      <View style={styles.mainContainer}>
-        <View>
-          <Text>{this.props.dealersChoice.current_drink.name}</Text>
-        </View>
+      <View>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleDrinkSelection.bind(this)}>
-          <Text>Into It</Text>
+          onPress={this.displayDrinkProfile.bind(this)}>
+          <Text>{drink.name}</Text>
         </TouchableHighlight>
       </View>
     )
   }
+
+  render() {
+    return(
+      <View style={styles.mainContainer}>
+        <ListView
+          dataSource={this.state.drinkDataSource}
+          renderRow={(drink) => {
+            return this.renderDrinkList(drink)
+          }} />
+      </View>
+    )
+  }
+
+
 
 }
 
@@ -61,6 +75,11 @@ module.exports = DealersDrink;
 
 
 
+      // Image wrap is not permitting ListView
+        // <Image
+        //   source={{uri: "http://bit.ly/1NQeycd"}}
+        //   style={styles.mainContainerImg}>
+        // </Image>
 
 
 
