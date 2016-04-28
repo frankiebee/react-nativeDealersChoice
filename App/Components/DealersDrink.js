@@ -28,12 +28,11 @@ class DealersDrink extends React.Component{
     }
   }
 
-  displayDrinkProfile(event) {
-    console.log(this, "THIS IS THIS IN displayDrinkProfile")
+  displayDrinkProfile(drink) {
+    console.log(drink, "THIS IS choice IN displayDrinkProfile")
     this.props.navigator.push({
-      title: this.props.dealersChoice.current_drink.name,
       component: DrinkProfile,
-      passProps: {option: this}
+      passProps: {drink: drink}
     });
     this.setState({
       isLoading: false,
@@ -44,10 +43,10 @@ class DealersDrink extends React.Component{
   renderDrinkList(drink) {
     console.log(drink, "THIS IS DRINK IN DEALERSDRINK")
     return(
-      <View>
+      <View style={styles.mainContainer}>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.displayDrinkProfile.bind(this)}>
+          onPress={(event) => this.displayDrinkProfile(drink)}>
           <Text>{drink.name}</Text>
         </TouchableHighlight>
       </View>
@@ -66,20 +65,8 @@ class DealersDrink extends React.Component{
     )
   }
 
-
-
 }
 
 
 module.exports = DealersDrink;
-
-
-
-      // Image wrap is not permitting ListView
-        // <Image
-        //   source={{uri: "http://bit.ly/1NQeycd"}}
-        //   style={styles.mainContainerImg}>
-        // </Image>
-
-
 
