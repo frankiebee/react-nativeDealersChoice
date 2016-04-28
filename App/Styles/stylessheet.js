@@ -13,11 +13,6 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: "flex-start",
   },
-  buttonContainer: {
-    position: 'absolute',
-    top: 100,
-    left: 115,
-  },
 
   searchContainer:{
   flexDirection: 'row',
@@ -78,13 +73,6 @@ var styles = StyleSheet.create({
     color: 'black'
   },
 
-  buttonText: {
-    fontSize: 15,
-    color: 'black',
-    alignSelf: 'center',
-    justifyContent: 'center',
-    opacity: 1,
-  },
   barButtonImg: {
     flex: 1,
     height: 100,
@@ -116,20 +104,32 @@ var styles = StyleSheet.create({
 
     opacity: 1,
   },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    width: 150,
+   buttonContainer: {
+    marginBottom:  40,
+    marginTop: 40,
+    marginLeft: 30,
+    marginRight: 30,
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: 'black',
+    borderColor: 'lightsteelblue',
+    width: width * 0.85,
+    height: 200
+  },
+  button: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width: 200,
+    height: 100,
+    paddingLeft: 25,
 
   },
 
+  buttonText: {
+    fontSize: 42,
+    fontFamily: 'Cochin-BoldItalic',
+    alignSelf: 'center',
+  },
 
   listView:{
     width: width,

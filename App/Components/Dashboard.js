@@ -34,21 +34,34 @@ class Dashboard extends React.Component{
   }
   render(){
     return (
-      <View style={styles.buttonContainer}>
+      <View style={styles.mainContainer}>
           <TouchableHighlight
           onPress={this._toMenu.bind(this)}
-          underlayColor="white">
+          style={styles.buttonContainer}
+          underlayColor="transparent">
+
+          <View>
             <View style={styles.button}>
               <Text style={styles.buttonText} >Menu</Text>
             </View>
+             <Text style={styles.treeDicription}>
+                Already know what you like and want to brouse the menu.
+            </Text>
+          </View>
           </TouchableHighlight>
 
           <TouchableHighlight
           onPress={this._toDealer.bind(this)}
-          underlayColor="white">
+          style={styles.buttonContainer}
+          underlayColor="transparent">
+          <View>
           <View style={styles.button}>
             <Text style={styles.buttonText}>Dealer's Choice</Text>
             </View>
+            <Text style={styles.treeDicription}>
+              Not quite sure what you like? Let us help you choose.
+            </Text>
+          </View>
           </TouchableHighlight>
       </View>
     )
