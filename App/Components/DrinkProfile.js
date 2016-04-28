@@ -32,7 +32,7 @@ class DrinkProfile extends React.Component{
           dataSource={this.state.drinkDataSource}
           renderRow={(drink) => {
             return this.renderDrinkList(drink)
-          }}/>
+          }} />
       </View>
     )
   }
@@ -44,14 +44,17 @@ class DrinkProfile extends React.Component{
           <Text>{drink.name}</Text>
           <Text>{drink.description}</Text>
       </View>
-      // Image wrap is not permitting ListView
-        // <Image
-        //   source={{uri: "http://bit.ly/1NQeycd"}}
-        //   style={styles.mainContainerImg}>
-        // </Image>
     )
   }
 
 }
 
 module.exports = DrinkProfile;
+
+
+
+      // Image wrap is not permitting ListView
+        // <Image
+        //   source={{uri: "http://bit.ly/1NQeycd"}}
+        //   style={styles.mainContainerImg}>
+        // </Image>
