@@ -42,9 +42,7 @@ class Dashboard extends React.Component{
               <Text style={styles.buttonText} >Menu</Text>
             </View>
           </TouchableHighlight>
-                        <Text>
-              Already have an idea what you want? Checkout the menu
-              </Text>
+
           <TouchableHighlight
           onPress={this._toDealer.bind(this)}
           underlayColor="white">
