@@ -34,25 +34,28 @@ class Dashboard extends React.Component{
   }
   render(){
     return (
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
-      style={styles.mainContainerImg}>
-        <View>
+      <View
+      style={styles.mainContainer}>
           <TouchableHighlight
-          style={styles.buttonImg}
+          style={styles.mainContainer}
           onPress={this._toMenu.bind(this)}
-          underlayColor="white">
-            <Text style={styles.buttonText} >Menu</Text>
+          underlayColor="transparent">
+            <View style={styles.button}>
+              <View style={styles.barTextView}>
+
+              <Text style={styles.buttonText} >Menu</Text>
+              </View>
+            </View>
+
           </TouchableHighlight>
-        </View>
         <View>
           <TouchableHighlight
           style={styles.buttonImg}
           onPress={this._toDealer.bind(this)}>
-            <Text style={styles.buttonText}>Dealer's Choice</Text>
+            <Text style={styles.buttonText}>Dealers Choice</Text>
           </TouchableHighlight>
         </View>
-      </Image>
+      </View>
     )
   }
 

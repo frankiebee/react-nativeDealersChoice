@@ -51,13 +51,12 @@ class DrinkMenu extends React.Component{
   }
   renderLoadingView() {
     return (
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
-      style={styles.loadingImage}>
+      <View
+      style={styles.loadingContainer}>
         <Text>
           Loading...
         </Text>
-      </Image>
+      </View>
     );
   }
   render(){
@@ -65,13 +64,12 @@ class DrinkMenu extends React.Component{
       this.renderLoadingView();
     }
       return(
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd" }}
-      style={styles.mainContainerImage}>
+      <View
+      style={styles.mainContainer}>
         <ListView
         dataSource={this.state.dataSource}
         renderRow={this.renderMenu.bind(this)}/>
-      </Image>
+      </View>
       );
   }
   renderMenu(drink){

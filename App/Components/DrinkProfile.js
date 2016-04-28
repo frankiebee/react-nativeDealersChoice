@@ -18,13 +18,12 @@ class DrinkProfile extends React.Component{
 
   render(){
     return(
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
+      <View
       style={styles.mainContainerImg}>
         <Text style={styles.clearBack}>{this.props.curentData.drink.name}</Text>
         <Text style={styles.clearBack}>{this.props.curentData.drink.description}</Text>
         <Text style={styles.clearBack}>{this.props.curentData.reviews[0].description}</Text>
-      </Image>
+      </View>
       )
   }
 
