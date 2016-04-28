@@ -12,38 +12,40 @@ var styles = StyleSheet.create({
     marginTop: 65,
     flexDirection: 'column',
     alignItems: "flex-start",
-
   },
+  buttonContainer: {
+    position: 'absolute',
+    top: 100,
+    left: 115,
+  },
+
   searchContainer:{
-    borderColor: "darkgrey",
-    borderWidth: 2,
-    flexDirection: 'row',
-    borderRadius: 8,
-    marginLeft: 5,
-    marginTop: 4,
-    marginBottom: 4,
+  flexDirection: 'row',
   },
   searchInput: {
-    paddingLeft: 4,
     flex: 2,
     height: 33,
     width: width * 0.78,
-    fontFamily: 'Georgia',
-    fontSize: 18,
+    padding: 4,
+    marginLeft: 5,
+    marginTop: 5,
+    marginRight: 6,
+    marginBottom: 5,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'black',
     borderRadius: 8,
     color: 'peru',
     alignSelf: 'flex-end',
   },
   searchButton:{
-    backgroundColor: 'darkgrey',
     height: 33,
     flex: 2,
     width: 60,
   },
   searchbuttonText: {
-    marginTop: 9,
-    fontFamily: 'Georgia',
-    fontSize: 12,
+    marginTop: 13,
+    fontSize: 14,
     color: 'black',
     alignSelf: 'center',
     justifyContent: 'center',
@@ -54,7 +56,7 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#000'
+    backgroundColor: 'gray'
   },
 
   mainContainerImg: {
@@ -84,8 +86,6 @@ var styles = StyleSheet.create({
     opacity: 1,
   },
   barButtonImg: {
-    borderColor: 'darkgrey',
-    borderWidth: 1,
     flex: 1,
     height: 100,
     flexDirection: 'row',
@@ -94,7 +94,7 @@ var styles = StyleSheet.create({
     width: width,
     alignSelf: 'center',
     justifyContent: 'center',
-    backgroundColor: 'darkgrey',
+    backgroundColor: 'white',
   },
   barTextView: {
     alignSelf:"flex-end",
@@ -109,18 +109,24 @@ var styles = StyleSheet.create({
     paddingBottom: 10,
     backgroundColor: 'transparent',
     fontSize: 24,
-    fontFamily: 'Cochin-BoldItalic',
+    fontFamily: 'Cochin',
     color: 'black',
     alignSelf: 'center',
     justifyContent: 'center',
+
+    opacity: 1,
   },
   button: {
     height: 45,
     flexDirection: 'row',
     marginBottom: 10,
     marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width: 150,
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: 'black',
 
   },
 

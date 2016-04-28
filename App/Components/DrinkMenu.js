@@ -66,7 +66,6 @@ class DrinkMenu extends React.Component{
       this.renderLoadingView();
     }
       return(
-
       <View
       style={styles.mainContainer}>
         <Text style={styles.title}>Drink Menu</Text>
