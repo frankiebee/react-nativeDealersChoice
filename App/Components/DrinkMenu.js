@@ -45,7 +45,7 @@ class DrinkMenu extends React.Component{
         this.props.navigator.push({
           title: drink.name || "drink details",
           component: DrinkProfile,
-          passProps: {curentData: responseData}
+          passProps: {drink: responseData}
       });
   }).done();
   }

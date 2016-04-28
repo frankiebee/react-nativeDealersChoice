@@ -43,20 +43,30 @@ class DealersDrink extends React.Component{
   renderDrinkList(drink) {
     console.log(drink, "THIS IS DRINK IN DEALERSDRINK")
     return(
-      <View style={styles.mainContainer}>
-        <TouchableHighlight
-          style={styles.button}
-          onPress={(event) => this.displayDrinkProfile(drink)}>
-          <Text>{drink.name}</Text>
-        </TouchableHighlight>
-      </View>
-    )
+     <TouchableHighlight
+        onPress={(event) => this.displayDrinkProfile(drink)}
+        underlayColor="transparent">
+        <Image
+          source={{uri: drink.image_url}}
+          style={styles.barButtonImg}>
+            <View style={styles.barTextView}>
+              <Text
+                style={styles.barButtonText}
+                >
+                  {drink.name}
+             </Text>
+             </View>
+          </Image>
+      </TouchableHighlight>
+      );
   }
 
   render() {
     return(
       <View style={styles.mainContainer}>
+        <Text style={styles.title}>Based off your taste selectios we recomend theise drinks for you</Text>
         <ListView
+          style={styles.listView}
           dataSource={this.state.drinkDataSource}
           renderRow={(drink) => {
             return this.renderDrinkList(drink)
