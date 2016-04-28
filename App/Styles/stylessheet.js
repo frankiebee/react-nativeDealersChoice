@@ -136,6 +136,43 @@ var styles = StyleSheet.create({
     marginLeft: 0,
     backgroundColor:"#f5f5f5",
   },
+  treeContainer:{
+    backgroundColor: "#f5f5f5",
+    flex: 1,
+    marginTop: 65,
+    flexDirection: 'row',
+    alignItems: "flex-start",
 
+  },
+  option:{
+    borderColor: "lightsteelblue",
+    borderWidth: 2,
+    borderRadius: 8,
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 50,
+    marginBottom: 4,
+  },
+  treeOptions:{
+    flex: 1,
+    alignSelf: 'center',
+  },
+  treeText:{
+    fontSize: 42,
+    fontFamily: 'Cochin-BoldItalic',
+    paddingBottom: 11,
+  },
+  treeDicription:{
+    color: "black",
+    alignSelf: 'center',
+    fontFamily: 'Georgia',
+  },
+  clickableSpace:{
+    marginBottom: 50,
+    marginTop: 50,
+    width: 200,
+    height: 100,
+    backgroundColor: 'transparent',
+  }
 });
 module.exports = styles;

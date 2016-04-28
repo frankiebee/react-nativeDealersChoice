@@ -89,30 +89,34 @@ class Tree extends React.Component{
 
   renderResults() {
     return (
-      <Image
-      source={{uri: "http://bit.ly/1NQeycd"}}
-      style={styles.mainContainerImg}>
+      <View
+      style={styles.treeContainer}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderOptions.bind(this)}>
         </ListView>
-      </Image>
+      </View>
     )
   }
 renderOptions(option) {
     return (
-      <View>
-        <View>
+      <View style={styles.option}>
+        <View >
           <TouchableHighlight
-            style={styles.button}
-            onPressIn={this.handleSelection.bind(this,option)}
-            underlayColor="white">
-            <Text style={styles.buttonText}>{option.name}</Text>
+            style={styles.treeOptions}
+            underlayColor="transparent"
+            activeOpacity= {0.5}
+            onPressOut={this.handleSelection.bind(this,option)}
+            >
+            <View style={styles.clickableSpace}>
+              <Text style={styles.treeText}>{option.name}</Text>
+              <View>
+                <Text style={styles.treeDicription}>{option.description}</Text>
+              </View>
+            </View>
           </TouchableHighlight>
         </View>
-        <View>
-          <Text style={styles.clearBack}>{option.description}</Text>
-        </View>
+
       </View>
     )
   }
