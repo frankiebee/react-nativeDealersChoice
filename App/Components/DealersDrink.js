@@ -64,7 +64,7 @@ class DealersDrink extends React.Component{
   render() {
     return(
       <View style={styles.mainContainer}>
-        <Text style={styles.title}>Based off your taste selectios we recomend theise drinks for you</Text>
+        <Text style={styles.dealersTitle}>Based off your taste selections we recomend theise drinks for you</Text>
         <ListView
           style={styles.listView}
           dataSource={this.state.drinkDataSource}
