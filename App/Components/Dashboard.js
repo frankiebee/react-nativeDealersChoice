@@ -45,7 +45,7 @@ class Dashboard extends React.Component{
               <Text style={styles.buttonText} >Menu</Text>
             </View>
              <Text style={styles.treeDicription}>
-                Already know what you like and want to brouse the menu.
+                Already know what you like and want to browse the menu.
             </Text>
           </View>
           </TouchableHighlight>
