@@ -30,12 +30,13 @@ class DrinkProfile extends React.Component{
   mainRender(){
     return(
       <View style={styles.mainContainer}>
+       <Text style={styles.title}>{this.state.drink.name}</Text>
       <Image
           source={{uri: this.state.drink.image_url}}
-          style={styles.barButtonImg}>
+          style={styles.profileImage}>
       </Image>
-       <Text style={styles.treeText}>{this.state.drink.name}</Text>
-       <Text style={styles.treeDicription}>{this.state.drink.description}</Text>
+        <Text style={styles.title}>Drink description:</Text>
+       <Text style={styles.drinkDescription}>{this.state.drink.description}</Text>
      </View>);
  }
   render() {

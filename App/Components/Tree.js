@@ -111,7 +111,7 @@ renderOptions(option) {
             <View style={styles.clickableSpace}>
               <Text style={styles.treeText}>{option.name}</Text>
               <View>
-                <Text style={styles.treeDicription}>{option.description}</Text>
+                <Text style={styles.treeDescription}>{option.description}</Text>
               </View>
             </View>
           </TouchableHighlight>

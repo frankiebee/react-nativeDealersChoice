@@ -7,7 +7,7 @@ var {
 var styles = StyleSheet.create({
 
   mainContainer: {
-    backgroundColor: "white",
+    backgroundColor: "#f5f5f5",
     flex: 1,
     marginTop: 65,
     flexDirection: 'column',
@@ -66,7 +66,7 @@ var styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Cochin-BoldItalic',
-    fontSize: 25,
+    fontSize: 42,
     textAlign: 'center',
     paddingTop: 10,
     paddingLeft: 15,
@@ -119,13 +119,15 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     justifyContent: 'center',
-    width: 200,
+    width: 300,
     height: 100,
     paddingLeft: 25,
 
   },
 
   buttonText: {
+    paddingLeft: 10,
+    width: 200,
     fontSize: 42,
     fontFamily: 'Cochin-BoldItalic',
     alignSelf: 'center',
@@ -163,7 +165,7 @@ var styles = StyleSheet.create({
     fontFamily: 'Cochin-BoldItalic',
     paddingBottom: 11,
   },
-  treeDicription:{
+  treeDescription:{
     color: "black",
     alignSelf: 'center',
     fontFamily: 'Georgia',
@@ -174,6 +176,19 @@ var styles = StyleSheet.create({
     width: 200,
     height: 100,
     backgroundColor: 'transparent',
+  },
+  profileImage:{
+    width: 375,
+    height: 375,
+    marginBottom: 42,
+  },
+  drinkDescription:{
+    color: "black",
+    alignSelf: 'center',
+    fontFamily: 'Georgia',
+    paddingLeft: 10,
+    paddingRight: 10,
+    fontSize: 15,
   }
 });
 module.exports = styles;

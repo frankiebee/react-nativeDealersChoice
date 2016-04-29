@@ -22,7 +22,7 @@ class Main extends React.Component{
   content(){
     this.state.bars.map(function(item){
       return (
-        <View key={item.name} style={ styles.content }>
+        <View key={item.name} style={styles.content}>
           <Text>{item.name}</Text>
         </View>
       );}
@@ -133,14 +133,14 @@ class Main extends React.Component{
             </TouchableHighlight>
           </View>
         <ListView
-         dataSource={this.state.dataSource}
-         renderRow={this.renderBar.bind(this)}
+          dataSource={this.state.dataSource}
+          renderRow={this.renderBar.bind(this)}
        style={styles.listView}/>
       </View>
       );
   }
 
-  renderBar(bar: string, sectionID: number, rowID: number){
+  renderBar(bar){
     return(
       <TouchableHighlight
         onPress={this._handleBarSelection.bind(this,bar)}

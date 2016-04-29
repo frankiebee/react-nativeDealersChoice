@@ -44,7 +44,7 @@ class Dashboard extends React.Component{
             <View style={styles.button}>
               <Text style={styles.buttonText} >Menu</Text>
             </View>
-             <Text style={styles.treeDicription}>
+             <Text style={styles.treeDescription}>
                 Already know what you like and want to brouse the menu.
             </Text>
           </View>
@@ -58,7 +58,7 @@ class Dashboard extends React.Component{
           <View style={styles.button}>
             <Text style={styles.buttonText}>Dealer's Choice</Text>
             </View>
-            <Text style={styles.treeDicription}>
+            <Text style={styles.treeDescription}>
               Not quite sure what you like? Let us help you choose.
             </Text>
           </View>
