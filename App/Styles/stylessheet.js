@@ -72,7 +72,14 @@ var styles = StyleSheet.create({
     paddingLeft: 15,
     color: 'black'
   },
-
+  dealersTitle:{
+    fontFamily: 'Cochin-BoldItalic',
+    fontSize: 25,
+    textAlign: 'center',
+    paddingTop: 10,
+    paddingLeft: 15,
+    color: 'black'
+  },
   barButtonImg: {
     flex: 1,
     height: 100,

@@ -35,7 +35,7 @@ class DrinkProfile extends React.Component{
           source={{uri: this.state.drink.image_url}}
           style={styles.profileImage}>
       </Image>
-        <Text style={styles.title}>Drink description:</Text>
+        <Text style={styles.dealersTitle}>Drink description:</Text>
        <Text style={styles.drinkDescription}>{this.state.drink.description}</Text>
      </View>);
  }
