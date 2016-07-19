@@ -1,4 +1,4 @@
- var React = require('react-native');
+var React = require('react-native');
 var DealersDrink = require('./DealersDrink')
 var styles = require('../Styles/stylessheet')
 
