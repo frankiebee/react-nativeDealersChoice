@@ -124,7 +124,6 @@ renderOptions(option) {
   renderLoadingMessage(){
     return (
       <Image
-      source={require('./img/woooooood.jpg')}
       style={styles.loadingContainer}>
          <ActivityIndicatorIOS
           animating={true}
