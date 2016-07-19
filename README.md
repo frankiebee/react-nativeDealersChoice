@@ -8,11 +8,11 @@ This repo is specifically for the Native IOS frontend. The server side Ruby on R
 
 ## Interface
 
-![BarIndex](http://imgur.com/GAoSsid "Bar Index")
+![BarIndex](http://imgur.com/GAoSsid.png "Bar Index")
 
-![DrinkIndex](http://imgur.com/O0hHgNb "Drink Index")
+![DrinkIndex](http://imgur.com/O0hHgNb.png "Drink Index")
 
-![DecisionTree](http://imgur.com/6GBISoc "Decision Tree")
+![DecisionTree](http://imgur.com/6GBISoc.png "Decision Tree")
 
 
 ## Needs Work
