@@ -1,4 +1,4 @@
- var React = require('react-native');
+var React = require('react-native');
 var DealersDrink = require('./DealersDrink')
 var styles = require('../Styles/stylessheet')
 
@@ -124,7 +124,6 @@ renderOptions(option) {
   renderLoadingMessage(){
     return (
       <Image
-      source={require('./img/woooooood.jpg')}
       style={styles.loadingContainer}>
          <ActivityIndicatorIOS
           animating={true}
