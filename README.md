@@ -5,6 +5,17 @@ Reviews and rating for each drink are tracked and displayed.
 
 This repo is specifically for the Native IOS frontend. The server side Ruby on Rails code is located [here](https://github.com/IanThorp/DealersChoice)
 
+
+## Interface
+![BarIndex](http://imgur.com/GAoSsid "Bar Index")
+![DrinkIndex](http://imgur.com/O0hHgNb "Drink Index")
+![DecisionTree](http://imgur.com/6GBISoc "Decision Tree")
+
+
+## Needs Work
+Yelp search turned off. Returns errors.
+User registration and login turned off. CORS errors.
+
 ## License
 MIT License
 
