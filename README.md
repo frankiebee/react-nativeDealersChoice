@@ -5,11 +5,6 @@ Reviews and rating for each drink are tracked and displayed.
 
 This repo is specifically for the Native IOS frontend. The server side Ruby on Rails code is located [here](https://github.com/IanThorp/DealersChoice)
 
-
-## Schema
-
-![Schema](app/assets/images/schema.png)
-
 ## License
 MIT License
 
